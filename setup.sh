@@ -73,4 +73,13 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
   fi
 
   ~/.tmux/plugins/tpm/bin/install_plugins
+
+  #################
+  ## ITerm Prefs ##
+  #################
+  cp -rf configs/com.googlecode.iterm2.plist ~/Library/Preferences
+  (cd ~/Library/Preferences && defaults read com.googlecode.iterm2.plist)
+  killall cfprefsd
+
+  echo "[setup.sh] ITerm preferences installed - quit and reopen to take effect"
 fi
