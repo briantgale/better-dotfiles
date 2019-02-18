@@ -64,12 +64,13 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
 
   # Tmux plugins
   echo "[setup.sh] Setting up tmux packages..."
-  tpm_dir="~/.tmux/plugins/tpm"
+  tpm_dir="$HOME/.tmux/plugins"
 
   if [ -d "$tpm_dir" ]; then
-    (cd "$tpm_dir" && git pull)
+    (cd "$tpm_dir" && cd tpm && git pull)
   else
-    git clone https://github.com/tmux-plugins/tpm "$tpm_dir"
+    mkdir -p "$tpm_dir"
+    (cd "$tpm_dir" && git clone https://github.com/tmux-plugins/tpm)
   fi
 
   ~/.tmux/plugins/tpm/bin/install_plugins
