@@ -26,3 +26,16 @@ reset=$(tput sgr0)
 #export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" "\\\$ ";'
 export PROMPT_COMMAND='__git_ps1 "\[$reset\][\[$blue\]\W\[$reset\]]" " ~ ";'
 
+cat << "EOF"
+                                _____
+                       __...---'-----`---...__
+                  _===============================
+ ______________,/'      `---..._______...---'
+(____________LL). .    ,--'
+ /    /.---'       `. /
+'--------_  - - - - _/
+          `~~~~~~~~'
+... to boldly go where no one has gone before ...
+
+EOF
+
