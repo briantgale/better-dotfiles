@@ -69,6 +69,7 @@ nnoremap <silent> <C-p> :FZF<CR>
 
 " Airline
 let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts = 1 
 
 " TMUX
 if exists('$TMUX')
