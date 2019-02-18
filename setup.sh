@@ -17,9 +17,11 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
  
 fi
 
-echo -n "Link dotfiles (Y/n)?"; read answer
+echo -n "Link dotfiles and install packages (Y/n)?"; read answer
 if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
-	# Remove old symlinks
+
+  # Remove old symlinks
+  echo "[setup.sh] Remove old symlinks..."
 	rm -f "$HOME/.tmux.conf"
 	rm -f "$HOME/.git-completion.sh"
 	rm -f "$HOME/.git-prompt.sh"
@@ -28,7 +30,8 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
 	rm -f "$HOME/.bashrc"
 	rm -f "$HOME/.bash_profile"
 
-	# Add new symlinks
+  # Add new symlinks
+  echo "[setup.sh] Symlinking config files..."
 	ln -s "$PWD/configs/.tmux.conf" "$HOME/.tmux.conf"
 	ln -s "$PWD/configs/.git-completion.sh" "$HOME/.git-completion.sh"
 	ln -s "$PWD/configs/.git-prompt.sh" "$HOME/.git-prompt.sh"
@@ -36,8 +39,21 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
 	ln -s "$PWD/configs/.bash_profile" "$HOME/.bash_profile"
 	ln -s "$PWD/configs/.bashrc" "$HOME/.bashrc"
 
+  # NVim & Install vim plugins
+  echo "[setup.sh] Setting up nvim packages..."
 	mkdir -p ~/.config/nvim 
 	ln -s "$PWD/configs/init.vim" "$HOME/.config/nvim/init.vim"
+  nvim +silent +PlugInstall +qall
 
-	nvim +silent +PlugInstall +qall
+  # Tmux plugins
+  echo "[setup.sh] Setting up tmux packages..."
+  tpm_dir="~/.tmux/plugins/tpm"
+
+  if [ -d "$tpm_dir" ]; then
+    (cd "$tpm_dir" && git pull)
+  else
+    git clone https://github.com/tmux-plugins/tpm "$tpm_dir"
+  fi
+
+  ~/.tmux/plugins/tpm/bin/install_plugins
 fi
