@@ -37,6 +37,7 @@ set cursorline
 set autoindent
 set smartindent
 set smarttab
+set hidden
 nnoremap <down> :m .+1<CR>==
 nnoremap <up> :m .-2<CR>==
 vnoremap <down> :m '>+1<CR>gv=gv
