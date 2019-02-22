@@ -13,6 +13,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'mxw/vim-jsx'
   Plug 'isruslan/vim-es6'
   Plug 'pangloss/vim-javascript'
+  Plug 'ajh17/vimcompletesme'
+  Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " VimRC reloading/sourcing etc
@@ -51,6 +53,10 @@ set undofile
 " Buffergator
 let g:buffergator_suppress_keymaps = 1
 nmap <leader>m :BuffergatorToggle<CR>
+
+" GitGutter
+nmap <silent> <leader>g :GitGutterToggle<CR>
+let g:gitgutter_enabled = 0
 
 " Split
 nmap <silent> <c-k> :wincmd k<CR>
