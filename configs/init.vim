@@ -1,4 +1,4 @@
-let mapleader="\<Space>"
+let mapleader="\,"
 
 call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'

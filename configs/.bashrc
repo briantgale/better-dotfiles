@@ -9,6 +9,7 @@ alias cdpp='cd ~/Projects/pieces'
 alias clean_branches="git branch | grep -v "dev" | xargs git branch -D"
 alias v="nvim"
 alias vim="nvim"
+alias rm="c && cat mdp ~/Projects/better-dotfiles/README.md"
 
 set -o vi
 
