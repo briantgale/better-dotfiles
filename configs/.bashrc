@@ -1,15 +1,10 @@
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
-
 alias ll='ls -alFoLG'
 alias c='clear'
 alias cdp='cd ~/Projects'
-alias cdpc='cd ~/Projects/contract'
-alias cdpp='cd ~/Projects/pieces'
 alias clean_branches="git branch | grep -v "dev" | xargs git branch -D"
 alias v="nvim"
 alias vim="nvim"
-alias rm="c && cat mdp ~/Projects/better-dotfiles/README.md"
+alias dotread="c && cat mdp ~/Projects/better-dotfiles/README.md"
 
 set -o vi
 

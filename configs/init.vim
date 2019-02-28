@@ -15,10 +15,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'pangloss/vim-javascript'
   Plug 'ajh17/vimcompletesme'
   Plug 'airblade/vim-gitgutter'
+  " Plug 'w0rp/ale'
 call plug#end()
 
 " VimRC reloading/sourcing etc
-nmap <leader>vm :e $MYVIMRC<CR>
+nmap <leader>vv :e $MYVIMRC<CR>
 nmap <leader>sv :source $MYVIMRC<CR>
 
 " UI, Tabs, and Spaces
@@ -69,6 +70,10 @@ nnoremap <silent> <Leader>q :close<CR>
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
+
+" Ale
+" let g:ale_sign_column_always = 1
+" let g:ale_fixers = {'ruby': ['ruby']}
 
 " FZF
 nnoremap <silent> <C-p> :FZF<CR>
