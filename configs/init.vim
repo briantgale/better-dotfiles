@@ -76,8 +76,8 @@ map <C-n> :NERDTreeToggle<CR>
 " let g:ale_fixers = {'ruby': ['ruby']}
 
 " FZF
-nnoremap <silent> <C-p> :FZF<CR>
-" nnoremap <silent> <C-p> :GFiles<CR>
+" nnoremap <silent> <C-p> :FZF<CR>
+nnoremap <silent> <C-p> :GFiles<CR>
 
 " Airline
 let g:airline_theme='bubblegum'
