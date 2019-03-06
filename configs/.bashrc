@@ -1,6 +1,7 @@
 alias ll='ls -alFoLG'
 alias c='clear'
 alias cdp='cd ~/Projects'
+alias dot='cd ~/Projects/better-dotfiles'
 alias clean_branches="git branch | grep -v "dev" | xargs git branch -D"
 alias v="nvim"
 alias vim="nvim"

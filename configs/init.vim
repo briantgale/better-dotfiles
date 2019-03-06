@@ -8,6 +8,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'jeetsukumaran/vim-buffergator'
   Plug 'tpope/vim-fugitive'
   Plug 'cocopon/iceberg.vim'
+  Plug 'joshdick/onedark.vim'
+  Plug 'tomasr/molokai'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'mxw/vim-jsx'
@@ -24,7 +26,9 @@ nmap <leader>sv :source $MYVIMRC<CR>
 
 " UI, Tabs, and Spaces
 filetype plugin indent on
-colorscheme iceberg
+" colorscheme iceberg
+" colorscheme onedark
+colorscheme molokai
 syntax on
 set tabstop=2
 set softtabstop=2
