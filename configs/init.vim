@@ -1,22 +1,31 @@
 let mapleader="\,"
 
 call plug#begin('~/.vim/plugged')
+  " File searching
   Plug 'scrooloose/nerdtree'
-  Plug 'vim-ruby/vim-ruby'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
   Plug 'jeetsukumaran/vim-buffergator'
-  Plug 'tpope/vim-fugitive'
-  Plug 'cocopon/iceberg.vim'
-  Plug 'joshdick/onedark.vim'
-  Plug 'tomasr/molokai'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+
+  " Sytax
+  Plug 'vim-ruby/vim-ruby'
   Plug 'mxw/vim-jsx'
   Plug 'isruslan/vim-es6'
   Plug 'pangloss/vim-javascript'
-  " Plug 'ajh17/vimcompletesme'
+
+  " Git
+  Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
+
+  " Views
+  " Plug 'cocopon/iceberg.vim'
+  " Plug 'joshdick/onedark.vim'
+  Plug 'tomasr/molokai'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+
+  " Text completion & Syntax Checking
+  " Plug 'ajh17/vimcompletesme'
   " Plug 'w0rp/ale'
   Plug 'ervandew/supertab'
   Plug 'tpope/vim-endwise'
