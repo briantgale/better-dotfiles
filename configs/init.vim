@@ -19,6 +19,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-gitgutter'
   " Plug 'w0rp/ale'
   Plug 'ervandew/supertab'
+  Plug 'tpope/vim-endwise'
 call plug#end()
 
 " VimRC reloading/sourcing etc
