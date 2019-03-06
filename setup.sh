@@ -26,6 +26,7 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
 	rm -f "$HOME/.gitconfig"
 	rm -f "$HOME/.bashrc"
 	rm -f "$HOME/.bash_profile"
+  rm -f "$HOME/.HOME/.fzf-tmux.sh"
 
   ## Add new symlinks
   echo "[setup.sh] Symlinking config files..."
@@ -35,12 +36,14 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
 	ln -s "$PWD/configs/.gitconfig" "$HOME/.gitconfig"
 	ln -s "$PWD/configs/.bash_profile" "$HOME/.bash_profile"
 	ln -s "$PWD/configs/.bashrc" "$HOME/.bashrc"
+  ln -s "$PWD/scripts/.fzf-tmux.sh" "$HOME/.fzf-tmux.sh"
 
   ## NVim & Install vim plugins
   echo "[setup.sh] Setting up nvim packages..."
 	mkdir -p ~/.config/nvim 
 	ln -s "$PWD/configs/init.vim" "$HOME/.config/nvim/init.vim"
   nvim +silent +PlugInstall +qall
+  echo "y y n" | ~/.fzf/install
 
   #####################
   ## Powerline fonts ##

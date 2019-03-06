@@ -1,3 +1,9 @@
+set -o vi
+
+source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND='ag --ignore --hidden --ignore-dir vendor -g ""'
+
 alias ll='ls -alFoLG'
 alias c='clear'
 alias cdp='cd ~/Projects'
@@ -6,8 +12,6 @@ alias clean_branches="git branch | grep -v "dev" | xargs git branch -D"
 alias v="nvim"
 alias vim="nvim"
 alias dotread="c && cat mdp ~/Projects/better-dotfiles/README.md"
-
-set -o vi
 
 GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWCOLORHINTS="yes"
@@ -36,4 +40,3 @@ cat << "EOF"
 ... to boldly go where no one has gone before ...
 
 EOF
-

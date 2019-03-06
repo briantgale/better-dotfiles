@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-gitgutter'
 
   " Views
-  " Plug 'cocopon/iceberg.vim'
+  Plug 'cocopon/iceberg.vim'
   " Plug 'joshdick/onedark.vim'
   Plug 'tomasr/molokai'
   Plug 'vim-airline/vim-airline'
@@ -94,6 +94,7 @@ map <C-n> :NERDTreeToggle<CR>
 " let g:ale_fixers = {'ruby': ['ruby']}
 
 " FZF
+" let g:fzf_layout = { 'window': '10split' }
 nnoremap <silent> <C-p> :FZF<CR>
 " nnoremap <silent> <C-p> :GFiles<CR>
 
