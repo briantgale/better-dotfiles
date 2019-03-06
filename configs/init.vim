@@ -15,9 +15,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'mxw/vim-jsx'
   Plug 'isruslan/vim-es6'
   Plug 'pangloss/vim-javascript'
-  Plug 'ajh17/vimcompletesme'
+  " Plug 'ajh17/vimcompletesme'
   Plug 'airblade/vim-gitgutter'
   " Plug 'w0rp/ale'
+  Plug 'ervandew/supertab'
 call plug#end()
 
 " VimRC reloading/sourcing etc
@@ -55,6 +56,9 @@ autocmd FileType * setlocal ts=2 sts=2 sw=2
 set undodir=~/.vim/undodir
 set undofile
 
+" Supertab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
 " Buffergator
 let g:buffergator_suppress_keymaps = 1
 nmap <leader>m :BuffergatorToggle<CR>
@@ -80,8 +84,8 @@ map <C-n> :NERDTreeToggle<CR>
 " let g:ale_fixers = {'ruby': ['ruby']}
 
 " FZF
-" nnoremap <silent> <C-p> :FZF<CR>
-nnoremap <silent> <C-p> :GFiles<CR>
+nnoremap <silent> <C-p> :FZF<CR>
+" nnoremap <silent> <C-p> :GFiles<CR>
 
 " Airline
 let g:airline_theme='bubblegum'
