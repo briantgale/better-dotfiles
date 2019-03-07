@@ -26,7 +26,7 @@ call plug#begin('~/.vim/plugged')
 
   " Text completion & Syntax Checking
   " Plug 'ajh17/vimcompletesme'
-  " Plug 'w0rp/ale'
+  Plug 'w0rp/ale'
   Plug 'ervandew/supertab'
   Plug 'tpope/vim-endwise'
 call plug#end()
@@ -91,6 +91,7 @@ nnoremap <silent> <Leader>q :close<CR>
 map <C-n> :NERDTreeToggle<CR>
 
 " Ale
+map <leader>at :ALEToggle<CR>
 " let g:ale_sign_column_always = 1
 " let g:ale_fixers = {'ruby': ['ruby']}
 
