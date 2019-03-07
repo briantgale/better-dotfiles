@@ -68,6 +68,7 @@ set undofile
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabCrMapping = 1
 
 " Buffergator
 let g:buffergator_suppress_keymaps = 1
