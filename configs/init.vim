@@ -1,5 +1,6 @@
 let mapleader="\,"
 
+" Plugins
 call plug#begin('~/.vim/plugged')
   " File searching
   Plug 'scrooloose/nerdtree'
@@ -29,6 +30,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'w0rp/ale'
   Plug 'ervandew/supertab'
   Plug 'tpope/vim-endwise'
+
+  " VIM
+  Plug 'guns/xterm-color-table.vim'
 call plug#end()
 
 " VimRC reloading/sourcing etc
@@ -47,8 +51,8 @@ set expandtab
 set showcmd
 set cursorline
 set title
+set numberwidth=5
 set number
-set numberwidth=6
 nmap <leader>n :set invnumber<CR>
 set cursorcolumn
 set cursorline
@@ -56,11 +60,27 @@ set autoindent
 set smartindent
 set smarttab
 set hidden
-nnoremap <down> :m .+1<CR>==
-nnoremap <up> :m .-2<CR>==
-vnoremap <down> :m '>+1<CR>gv=gv
-vnoremap <up> :m '<-2<CR>gv=gv
-autocmd FileType * setlocal ts=2 sts=2 sw=2
+le %5
+
+" Gutter Colors
+hi LineNr ctermfg=15 ctermbg=236
+hi CursorLineNr ctermfg=15 ctermbg=33
+
+" Cursor line & column
+hi CursorLine ctermbg=235
+hi CursorColumn ctermbg=235
+"hi CursorLine gui=underline cterm=underline ctermbg=235
+"highlight CursorLine term=bold cterm=bold guibg=Grey40 guifg=155
+
+" nnoremap <down> :m .+1<CR>==
+" nnoremap <up> :m .-2<CR>==
+" vnoremap <down> :m '>+1<CR>gv=gv
+" vnoremap <up> :m '<-2<CR>gv=gv
+" autocmd FileType * setlocal ts=2 sts=2 sw=2
+
+" Sign Column
+" let g:gitgutter_sign_column_always = 1
+" set signcolumn=yes
 
 " Undo
 set undodir=~/.vim/undodir
@@ -103,6 +123,9 @@ nnoremap <silent> <C-p> :FZF<CR>
 " Airline
 let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts = 1 
+
+" XTerm Color Table
+nmap <silent> <Leader>ct :XtermColorTable<CR>
 
 " TMUX
 if exists('$TMUX')
