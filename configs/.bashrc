@@ -3,6 +3,10 @@ set -o vi
 source ~/.fzf.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='ag --ignore --hidden --ignore-dir vendor -g ""'
+export FZF_DEFAULT_OPTS='
+--color fg:252,bg:234,hl:67,fg+:84,bg+:234,hl+:67
+--color info:144,prompt:161,spinner:135,pointer:84,marker:118
+'
 
 alias ll='ls -alFoLG'
 alias c='clear'

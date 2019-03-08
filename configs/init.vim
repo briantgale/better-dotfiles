@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
+  " Plug 'mhinz/vim-signify'
 
   " Views
   Plug 'cocopon/iceberg.vim'
@@ -117,11 +118,14 @@ map <leader>at :ALEToggle<CR>
 
 " FZF
 " let g:fzf_layout = { 'window': '10split' }
+" Colors defined in .bashrc
+" https://github.com/junegunn/fzf/wiki/Color-schemes
 nnoremap <silent> <C-p> :FZF<CR>
 " nnoremap <silent> <C-p> :GFiles<CR>
+let g:fzf_layout = { 'down': '~40%' }
 
 " Airline
-let g:airline_theme='bubblegum'
+let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 1 
 
 " XTerm Color Table
