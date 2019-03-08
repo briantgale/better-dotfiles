@@ -13,8 +13,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'mxw/vim-jsx'
   Plug 'isruslan/vim-es6'
   Plug 'pangloss/vim-javascript'
+" Plug 'yggdroot/indentline'
 
-  " Git
+" Git
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
   " Plug 'mhinz/vim-signify'
@@ -72,6 +73,11 @@ hi CursorLine ctermbg=235
 hi CursorColumn ctermbg=235
 "hi CursorLine gui=underline cterm=underline ctermbg=235
 "highlight CursorLine term=bold cterm=bold guibg=Grey40 guifg=155
+
+" Indentline
+" let g:indentLine_bgcolor_term = 240
+" let g:indentLine_color_term = 240
+" let g:indentLine_char = ' '
 
 " nnoremap <down> :m .+1<CR>==
 " nnoremap <up> :m .-2<CR>==
