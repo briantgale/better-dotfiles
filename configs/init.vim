@@ -81,7 +81,7 @@ hi CursorColumn ctermbg=235
 
 " Sign Column
 " let g:gitgutter_sign_column_always = 1
-" set signcolumn=yes
+set signcolumn=yes
 
 " Undo
 set undodir=~/.vim/undodir
