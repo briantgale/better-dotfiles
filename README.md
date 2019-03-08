@@ -1,5 +1,7 @@
 # Briant's Better Dotfiles
 
+This repo contains my dotfiles, as well as a few scripts used to make maintaining them on multiple machines simpler.
+
 ## TMux Config
 - Prefix - CTRL+ a
 - Rename Session - <Prefix> + $
@@ -29,4 +31,4 @@
 ## VIM Plugins
 - <Leader> m - List open buggers
 - <CTRL> p - Fuzzyfind
-- <CTRL> n - Nerdtreue
+- <CTRL> n - Nerdtree
