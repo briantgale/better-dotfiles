@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mxw/vim-jsx'
   Plug 'isruslan/vim-es6'
   Plug 'pangloss/vim-javascript'
-" Plug 'yggdroot/indentline'
+  Plug 'yggdroot/indentline'
 
 " Git
   Plug 'tpope/vim-fugitive'
@@ -21,17 +21,16 @@ call plug#begin('~/.vim/plugged')
   " Plug 'mhinz/vim-signify'
 
   " Views
-  Plug 'cocopon/iceberg.vim'
+  " Plug 'cocopon/iceberg.vim'
   " Plug 'joshdick/onedark.vim'
   Plug 'tomasr/molokai'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 
   " Text completion & Syntax Checking
-  " Plug 'ajh17/vimcompletesme'
-  Plug 'w0rp/ale'
-  Plug 'ervandew/supertab'
-  Plug 'tpope/vim-endwise'
+  Plug 'w0rp/ale' " Linting
+  Plug 'ervandew/supertab' " Tab completion
+  Plug 'tpope/vim-endwise' " Ruby end tag completion
 
   " VIM
   Plug 'guns/xterm-color-table.vim'
@@ -71,13 +70,13 @@ hi CursorLineNr ctermfg=15 ctermbg=33
 " Cursor line & column
 hi CursorLine ctermbg=235
 hi CursorColumn ctermbg=235
-"hi CursorLine gui=underline cterm=underline ctermbg=235
-"highlight CursorLine term=bold cterm=bold guibg=Grey40 guifg=155
 
 " Indentline
-" let g:indentLine_bgcolor_term = 240
-" let g:indentLine_color_term = 240
-" let g:indentLine_char = ' '
+" let g:indentLine_setColors = 0
+let g:indentLine_bgcolor_term = 233
+let g:indentLine_color_term = 236
+let g:indentLine_char = '|'
+let g:indentLine_setConceal = 0
 
 " nnoremap <down> :m .+1<CR>==
 " nnoremap <up> :m .-2<CR>==
