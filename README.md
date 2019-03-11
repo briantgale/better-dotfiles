@@ -23,6 +23,8 @@ This repo contains my dotfiles, as well as a few scripts used to make maintainin
 - cc - Insert and indent current line
 - o - Open new line below and set to insert mode
 - O - Open new line above and set to insert mode
+- , + o - Open a new below
+- , + O - Open a new line above
 - A - Set to insert mode at the end of the current line
 - I - Set to insert mode at the beginning of the current line
 - gg - Go to top of file

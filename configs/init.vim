@@ -14,6 +14,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'isruslan/vim-es6'
   Plug 'pangloss/vim-javascript'
   Plug 'yggdroot/indentline'
+  Plug 'rstacruz/vim-closer'
+  Plug 'jiangmiao/auto-pairs'
 
 " Git
   Plug 'tpope/vim-fugitive'
@@ -34,6 +36,8 @@ call plug#begin('~/.vim/plugged')
 
   " VIM
   Plug 'guns/xterm-color-table.vim'
+
+  Plug 'metakirby5/codi.vim'
 call plug#end()
 
 " VimRC reloading/sourcing etc
@@ -54,6 +58,7 @@ set cursorline
 set title
 set numberwidth=5
 set number
+set autoread
 nmap <leader>n :set invnumber<CR>
 set cursorcolumn
 set cursorline
@@ -63,6 +68,10 @@ set smarttab
 set hidden
 le %5
 
+" Quickly insert an empty new line without entering insert mode
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
+
 " Gutter Colors
 hi LineNr ctermfg=15 ctermbg=236
 hi CursorLineNr ctermfg=15 ctermbg=33
@@ -70,6 +79,11 @@ hi CursorLineNr ctermfg=15 ctermbg=33
 " Cursor line & column
 hi CursorLine ctermbg=235
 hi CursorColumn ctermbg=235
+
+
+" Codi for code scratchpad
+nnoremap <Leader>irb :Codi ruby<CR>
+nnoremap <Leader>q :Codi!<CR>
 
 " Indentline
 " let g:indentLine_setColors = 0

@@ -8,6 +8,9 @@ export FZF_DEFAULT_OPTS='
 --color info:144,prompt:161,spinner:135,pointer:84,marker:118
 '
 
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
 alias ll='ls -alFoLG'
 alias c='clear'
 alias cdp='cd ~/Projects'
