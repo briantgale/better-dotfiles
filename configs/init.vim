@@ -143,6 +143,9 @@ nnoremap <silent> <C-p> :FZF<CR>
 " nnoremap <silent> <C-p> :GFiles<CR>
 let g:fzf_layout = { 'down': '~40%' }
 
+" Vim Fugitive
+nnoremap <silent> <Leader>gb :Gblame<CR>
+
 " Airline
 let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 1 
