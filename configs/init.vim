@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mxw/vim-jsx'
   Plug 'isruslan/vim-es6'
   Plug 'pangloss/vim-javascript'
-  Plug 'yggdroot/indentline'
+  " Plug 'yggdroot/indentline'
   Plug 'rstacruz/vim-closer'
   Plug 'jiangmiao/auto-pairs'
 
@@ -36,20 +36,28 @@ call plug#begin('~/.vim/plugged')
 
   " VIM
   Plug 'guns/xterm-color-table.vim'
-
-  Plug 'metakirby5/codi.vim'
+  Plug 'mhinz/vim-startify'
+  " Plug 'metakirby5/codi.vim'
 call plug#end()
 
-" VimRC reloading/sourcing etc
+"""""""""
+"" VIM ""
+"""""""""
+
+" Load and source vimrc
 nmap <leader>vv :e $MYVIMRC<CR>
 nmap <leader>sv :source $MYVIMRC<CR>
+nmap <leader>pi :PlugInstall<CR>
 
-" UI, Tabs, and Spaces
-filetype plugin indent on
+" Color Scheme
 " colorscheme iceberg
 " colorscheme onedark
 colorscheme molokai
 syntax on
+set termguicolors
+
+" UI, Tabs, and Spaces
+filetype plugin indent on
 set tabstop=2
 set softtabstop=2
 set expandtab
@@ -59,18 +67,23 @@ set title
 set numberwidth=5
 set number
 set autoread
-nmap <leader>n :set invnumber<CR>
 set cursorcolumn
 set cursorline
 set autoindent
 set smartindent
 set smarttab
 set hidden
-le %5
+" le %5
+
+" Mappings
+nmap <leader>n :set invnumber<CR>
+
+" Clipboard
+set clipboard+=unnamed " Change y and p to copy into the OS clipboard
 
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
-nnoremap <Leader>O O<Esc>
+nnoremap <Leader>O O<Esc
 
 " Gutter Colors
 hi LineNr ctermfg=15 ctermbg=236
@@ -80,17 +93,20 @@ hi CursorLineNr ctermfg=15 ctermbg=33
 hi CursorLine ctermbg=235
 hi CursorColumn ctermbg=235
 
+"""""""""""""
+"" PLUGINS ""
+"""""""""""""
 
 " Codi for code scratchpad
-nnoremap <Leader>irb :Codi ruby<CR>
-nnoremap <Leader>q :Codi!<CR>
+" nnoremap <Leader>irb :Codi ruby<CR>
+" nnoremap <Leader>q :Codi!<CR>
 
 " Indentline
 " let g:indentLine_setColors = 0
-let g:indentLine_bgcolor_term = 233
-let g:indentLine_color_term = 236
-let g:indentLine_char = '|'
-let g:indentLine_setConceal = 0
+" let g:indentLine_bgcolor_term = 233
+" let g:indentLine_color_term = 236
+" let g:indentLine_char = '|'
+" let g:indentLine_setConceal = 0
 
 " nnoremap <down> :m .+1<CR>==
 " nnoremap <up> :m .-2<CR>==
