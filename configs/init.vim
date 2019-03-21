@@ -16,8 +16,10 @@ call plug#begin('~/.vim/plugged')
   " Plug 'yggdroot/indentline'
   Plug 'rstacruz/vim-closer'
   Plug 'jiangmiao/auto-pairs'
-
-" Git
+  Plug 'scrooloose/nerdcommenter'
+  " Plug 'myusuf3/numbers.vim'
+  
+  " Git
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
   " Plug 'mhinz/vim-signify'
@@ -37,6 +39,7 @@ call plug#begin('~/.vim/plugged')
   " VIM
   Plug 'guns/xterm-color-table.vim'
   Plug 'mhinz/vim-startify'
+  Plug 'junegunn/goyo.vim'
   " Plug 'metakirby5/codi.vim'
 call plug#end()
 
@@ -172,6 +175,15 @@ let g:gitgutter_enabled = 0
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
+
+" NerdCommenter
+nnoremap <leader>cc NERDComToggleComment<CR>
+
+" GOYO
+let g:goyo_width = 160
+let g:goyo_height = 120
+nnoremap <leader>gg :Goyo<CR>
+nnoremap <leader>go :Goyo!<CR>
 
 " Ale
 map <leader>at :ALEToggle<CR>
