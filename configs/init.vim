@@ -112,7 +112,7 @@ hi CursorColumn ctermbg=235
 " nnoremap <up> :m .-2<CR>==
 " vnoremap <down> :m '>+1<CR>gv=gv
 " vnoremap <up> :m '<-2<CR>gv=gv
-" autocmd FileType * setlocal ts=2 sts=2 sw=2
+autocmd FileType * setlocal ts=2 sts=2 sw=2
 
 " Sign Column
 " let g:gitgutter_sign_column_always = 1
