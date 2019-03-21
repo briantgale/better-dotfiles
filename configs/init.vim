@@ -47,51 +47,95 @@ call plug#end()
 " Load and source vimrc
 nmap <leader>vv :e $MYVIMRC<CR>
 nmap <leader>sv :source $MYVIMRC<CR>
-nmap <leader>pi :PlugInstall<CR>
+nmap <leader>pp :PlugInstall<CR>
 
-" Color Scheme
+"" Color Scheme
 " colorscheme iceberg
 " colorscheme onedark
 colorscheme molokai
-syntax on
-set termguicolors
 
-" UI, Tabs, and Spaces
+" Enable syntax highlighting
+syntax on
+" set termguicolors
+
+" Enable filetype detection pugin and indent
 filetype plugin indent on
+
+" Indentation
 set tabstop=2
 set softtabstop=2
 set expandtab
-set showcmd
-set cursorline
-set title
-set numberwidth=5
-set number
-set autoread
-set cursorcolumn
-set cursorline
+set smarttab
 set autoindent
 set smartindent
-set smarttab
+
+" Shows the command
+set showcmd
+
+" Shows the page title
+set title
+
+" Display the number column by default
+set number
+
+" Toggle number column
+nmap <leader>n :set invnumber<CR> 
+
+" Automatcially reload a file that's been saved elsewhere
+set autoread
+
+" Supress message that a buffer hasn't been saved when changing
 set hidden
-" le %5
 
-" Mappings
-nmap <leader>n :set invnumber<CR>
+" Searches
+set ignorecase " searches are case insensitive...
+set smartcase  " ... unless they contain at least one capital letter
 
-" Clipboard
-set clipboard+=unnamed " Change y and p to copy into the OS clipboard
+" Buffers
+nnoremap <silent>; :Buffers<CR>
+
+" Use the system clipboard when using y and p
+set clipboard+=unnamed
 
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
-nnoremap <Leader>O O<Esc
+nnoremap <Leader>O O<Esc>
+
+" Default width of the left column
+set numberwidth=5
 
 " Gutter Colors
 hi LineNr ctermfg=15 ctermbg=236
 hi CursorLineNr ctermfg=15 ctermbg=33
 
 " Cursor line & column
+set cursorcolumn
+set cursorline
 hi CursorLine ctermbg=235
 hi CursorColumn ctermbg=235
+
+" Move lines with arrow keys
+" nnoremap <down> :m .+1<CR>==
+" nnoremap <up> :m .-2<CR>==
+" vnoremap <down> :m '>+1<CR>gv=gv
+" vnoremap <up> :m '<-2<CR>gv=gv
+
+" Make all files 2 space tab width
+autocmd FileType * setlocal ts=2 sts=2 sw=2
+
+" Hold onto undo history for everything
+set undodir=~/.vim/undodir
+set undofile
+
+" Split windows
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+nnoremap <silent> <Leader>v :split<CR>
+nnoremap <silent> <Leader>b :vsplit<CR>
+nnoremap <silent> <Leader>q :close<CR>
+
 
 """""""""""""
 "" PLUGINS ""
@@ -108,19 +152,11 @@ hi CursorColumn ctermbg=235
 " let g:indentLine_char = '|'
 " let g:indentLine_setConceal = 0
 
-" nnoremap <down> :m .+1<CR>==
-" nnoremap <up> :m .-2<CR>==
-" vnoremap <down> :m '>+1<CR>gv=gv
-" vnoremap <up> :m '<-2<CR>gv=gv
-autocmd FileType * setlocal ts=2 sts=2 sw=2
 
 " Sign Column
 " let g:gitgutter_sign_column_always = 1
-set signcolumn=yes
+" set signcolumn=yes
 
-" Undo
-set undodir=~/.vim/undodir
-set undofile
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -133,15 +169,6 @@ nmap <leader>m :BuffergatorToggle<CR>
 " GitGutter
 nmap <silent> <leader>g :GitGutterToggle<CR>
 let g:gitgutter_enabled = 0
-
-" Split
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
-nnoremap <silent> <Leader>v :split<CR>
-nnoremap <silent> <Leader>b :vsplit<CR>
-nnoremap <silent> <Leader>q :close<CR>
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
@@ -156,8 +183,8 @@ map <leader>at :ALEToggle<CR>
 " Colors defined in .bashrc
 " https://github.com/junegunn/fzf/wiki/Color-schemes
 nnoremap <silent> <C-p> :FZF<CR>
-" nnoremap <silent> <C-p> :GFiles<CR>
-let g:fzf_layout = { 'down': '~40%' }
+nnoremap <silent>f :Ag<CR>
+let g:fzf_layout = { 'down': '~60%' }
 
 " Vim Fugitive
 nnoremap <silent> <Leader>gb :Gblame<CR>
@@ -177,3 +204,9 @@ else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+
+" Things I want to try:
+" These 2 packages require python 3 to run
+" Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+" Plug 'fishbullet/deoplete-ruby'
