@@ -174,6 +174,7 @@ nmap <silent> <leader>g :GitGutterToggle<CR>
 let g:gitgutter_enabled = 0
 
 " NerdTree
+let g:NERDTreeQuitOnOpen = 1
 map <C-n> :NERDTreeToggle<CR>
 
 " NerdCommenter
