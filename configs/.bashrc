@@ -1,5 +1,5 @@
 set -o vi
-
+source ~/.bin/tmuxinator.bash
 source ~/.fzf.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='ag --ignore --hidden --ignore-dir vendor -g ""'

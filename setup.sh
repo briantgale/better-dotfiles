@@ -26,8 +26,9 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
 	rm -f "$HOME/.gitconfig"
 	rm -f "$HOME/.bashrc"
 	rm -f "$HOME/.bash_profile"
-  rm -f "$HOME/.HOME/.fzf-tmux.sh"
-
+  rm -f "$HOME/.fzf-tmux.sh"
+  rm -f "$HOME/.bin/tmuxinator.bash"
+k
   ## Add new symlinks
   echo "[setup.sh] Symlinking config files..."
 	ln -s "$PWD/configs/.tmux.conf" "$HOME/.tmux.conf"
@@ -37,6 +38,7 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
 	ln -s "$PWD/configs/.bash_profile" "$HOME/.bash_profile"
 	ln -s "$PWD/configs/.bashrc" "$HOME/.bashrc"
   ln -s "$PWD/scripts/.fzf-tmux.sh" "$HOME/.fzf-tmux.sh"
+  ln -s "$PWD/scripts/tmuxinator.bash" "$HOME/.bin/tmuxinator.bash"
 
   ## NVim & Install vim plugins
   echo "[setup.sh] Setting up nvim packages..."
