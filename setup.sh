@@ -38,6 +38,8 @@ k
 	ln -s "$PWD/configs/.bash_profile" "$HOME/.bash_profile"
 	ln -s "$PWD/configs/.bashrc" "$HOME/.bashrc"
   ln -s "$PWD/scripts/.fzf-tmux.sh" "$HOME/.fzf-tmux.sh"
+
+  mkdir -p ~/.bin
   ln -s "$PWD/scripts/tmuxinator.bash" "$HOME/.bin/tmuxinator.bash"
 
   ## NVim & Install vim plugins

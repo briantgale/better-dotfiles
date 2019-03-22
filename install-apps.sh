@@ -25,6 +25,17 @@ function checkAndInstallGem() {
   fi
 }
 
+function checkAndInstallNpm() {
+  RESULT=`npm list -g $1`
+
+  if [[ $RESULT == *"empty"* ]]; then
+    echo "[install-apps] Installing npm $1..."
+    npm install $1 -g
+  else
+    echo "[install-apps] NPM installed $1"
+  fi
+}
+
 echo -n "Install all base packages (Y/n)?"; read answer
 if [[ $answer == "y" ]] || [[ $answer == "Y" ]] ; then
   echo "[install-apps] Checking for homebrew..."
@@ -49,6 +60,7 @@ if [[ $answer == "y" ]] || [[ $answer == "Y" ]] ; then
   checkAndInstallPackage "mdp"
   checkAndInstallPackage "fzf"
   checkAndInstallPackage "the_silver_searcher"
+  checkAndInstallPackage "npm"
 
   echo "[install-apps] Checking RVM..."
 
@@ -62,7 +74,9 @@ if [[ $answer == "y" ]] || [[ $answer == "Y" ]] ; then
   fi
 
   echo "[install-apps] Setting up additional packages..."
-  checkAndInstallGem "colorls"
+
+  #checkAndInstallGem "colorls"
   checkAndInstallGem "tmuxinator"
+  checkAndInstallNpm "gtop"
 fi
 
