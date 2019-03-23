@@ -61,6 +61,7 @@ if [[ $answer == "y" ]] || [[ $answer == "Y" ]] ; then
   checkAndInstallPackage "fzf"
   checkAndInstallPackage "the_silver_searcher"
   checkAndInstallPackage "npm"
+  checkAndInstallPackage "cmatrix"
 
   echo "[install-apps] Checking RVM..."
 
