@@ -1,0 +1,15 @@
+https://github.com/herrbischoff/awesome-command-line-apps
+https://github.com/agarrharr/awesome-cli-apps
+https://github.com/alebcay/awesome-shell
+https://github.com/agarrharr/awesome-cli-apps
+
+https://github.com/lra/mackup
+https://github.com/rupa/z
+https://github.com/oscardelben/sheet
+https://github.com/samg/timetrap
+https://github.com/dbcli/mycli
+https://github.com/deadc0de6/dotdrop
+https://github.com/IonicaBizau/idea
+https://brettterpstra.com/projects/doing/
+https://github.com/jamesob/desk
+https://tailordev.github.io/Watson/
