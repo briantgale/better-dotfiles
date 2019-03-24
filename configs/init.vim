@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdcommenter'
   " Plug 'myusuf3/numbers.vim'
-  
+  Plug 'alvan/vim-closetag'
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
@@ -185,6 +185,9 @@ let g:goyo_width = 160
 let g:goyo_height = 120
 nnoremap <leader>gg :Goyo<CR>
 nnoremap <leader>go :Goyo!<CR>
+
+" Closetag
+let g:closetag_filenames = "*.html.erb,*.html,*.xhtml,*.phtml"
 
 " Ale
 map <leader>at :ALEToggle<CR>
