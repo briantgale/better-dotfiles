@@ -23,6 +23,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
   " Plug 'mhinz/vim-signify'
+  Plug 'slim-template/vim-slim'
+
 
   " Views
   " Plug 'cocopon/iceberg.vim'
