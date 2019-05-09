@@ -25,7 +25,6 @@ call plug#begin('~/.vim/plugged')
   " Plug 'mhinz/vim-signify'
   Plug 'slim-template/vim-slim'
 
-
   " Views
   " Plug 'cocopon/iceberg.vim'
   " Plug 'joshdick/onedark.vim'
@@ -42,6 +41,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'guns/xterm-color-table.vim'
   Plug 'mhinz/vim-startify'
   Plug 'junegunn/goyo.vim'
+  Plug 'djoshea/vim-autoread'
+  Plug 'ap/vim-buftabline'
   " Plug 'metakirby5/codi.vim'
 call plug#end()
 
@@ -98,6 +99,8 @@ set smartcase  " ... unless they contain at least one capital letter
 
 " Buffers
 nnoremap <silent>; :Buffers<CR>
+nnoremap <Leader>l :bn<CR>
+nnoremap <Leader>h :bn<CR>
 
 " Use the system clipboard when using y and p
 set clipboard+=unnamed
@@ -129,6 +132,7 @@ hi CursorColumn ctermbg=235
 autocmd FileType * setlocal ts=2 sts=2 sw=2
 
 " Hold onto undo history for everything
+set noswapfile
 set undodir=~/.vim/undodir
 set undofile
 
