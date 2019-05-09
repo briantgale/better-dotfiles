@@ -34,6 +34,7 @@ reset=$(tput sgr0)
 
 #export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" "\\\$ ";'
 export PROMPT_COMMAND='__git_ps1 "\[$reset\][\[$blue\]\W\[$reset\]]" " ~ ";'
+# export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 cat << "EOF"
                                 _____
