@@ -19,11 +19,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdcommenter'
   " Plug 'myusuf3/numbers.vim'
   Plug 'alvan/vim-closetag'
+
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
+  Plug 'rhysd/git-messenger.vim'
   " Plug 'mhinz/vim-signify'
-  Plug 'slim-template/vim-slim'
 
   " Views
   " Plug 'cocopon/iceberg.vim'
@@ -31,6 +32,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tomasr/molokai'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'slim-template/vim-slim'
 
   " Text completion & Syntax Checking
   Plug 'w0rp/ale' " Linting
@@ -40,7 +42,7 @@ call plug#begin('~/.vim/plugged')
   " VIM
   Plug 'guns/xterm-color-table.vim'
   Plug 'mhinz/vim-startify'
-  Plug 'junegunn/goyo.vim'
+  " Plug 'junegunn/goyo.vim'
   Plug 'djoshea/vim-autoread'
   Plug 'ap/vim-buftabline'
   " Plug 'metakirby5/codi.vim'
@@ -179,6 +181,10 @@ nmap <leader>m :BuffergatorToggle<CR>
 nmap <silent> <leader>g :GitGutterToggle<CR>
 let g:gitgutter_enabled = 0
 
+" Git Messenger
+let g:git_messenger_no_default_mappings=v:true
+nmap <leader>gg <Plug>(git-messenger)
+
 " NerdTree
 let g:NERDTreeQuitOnOpen = 1
 map <C-n> :NERDTreeToggle<CR>
@@ -187,10 +193,10 @@ map <C-n> :NERDTreeToggle<CR>
 nnoremap <leader>cc NERDComToggleComment<CR>
 
 " GOYO
-let g:goyo_width = 160
-let g:goyo_height = 120
-nnoremap <leader>gg :Goyo<CR>
-nnoremap <leader>go :Goyo!<CR>
+" let g:goyo_width = 160
+" let g:goyo_height = 120
+" nnoremap <leader>gg :Goyo<CR>
+" nnoremap <leader>go :Goyo!<CR>
 
 " Closetag
 let g:closetag_filenames = "*.html.erb,*.html,*.xhtml,*.phtml"
