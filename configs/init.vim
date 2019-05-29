@@ -199,7 +199,7 @@ nnoremap <leader>cc NERDComToggleComment<CR>
 " nnoremap <leader>go :Goyo!<CR>
 
 " Closetag
-let g:closetag_filenames = "*.html.erb,*.html,*.xhtml,*.phtml"
+let g:closetag_filenames = "*.html.erb,*.html,*.xhtml,*.phtml, *.js"
 
 " Ale
 map <leader>at :ALEToggle<CR>
