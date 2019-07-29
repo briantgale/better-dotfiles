@@ -35,7 +35,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'slim-template/vim-slim'
 
   " Text completion & Syntax Checking
-  Plug 'w0rp/ale' " Linting
+  " Plug 'w0rp/ale' " Linting
   Plug 'ervandew/supertab' " Tab completion
   Plug 'tpope/vim-endwise' " Ruby end tag completion
 
