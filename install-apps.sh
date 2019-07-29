@@ -63,6 +63,14 @@ if [[ $answer == "y" ]] || [[ $answer == "Y" ]] ; then
   checkAndInstallPackage "npm"
   checkAndInstallPackage "cmatrix"
   checkAndInstallPackage "tig"
+  checkAndInstallPackage "zsh"
+
+  echo "[install-apps] OhMyZSH..."
+  if [ echo "$SHELL" != "/bin/zsh"]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  else
+    echo "[install-apps] zsh already installed"
+  fi
 
   echo "[install-apps] Checking RVM..."
 
