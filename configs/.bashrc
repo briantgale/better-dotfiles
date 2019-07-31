@@ -1,7 +1,7 @@
 set -o vi
-source ~/.bin/tmuxinator.bash
-source ~/.fzf.bash
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# source ~/.bin/tmuxinator.bash
+source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --ignore --hidden --ignore-dir vendor -g ""'
 export FZF_DEFAULT_OPTS='
 --color fg:252,bg:234,hl:67,fg+:84,bg+:234,hl+:67
@@ -48,3 +48,7 @@ cat << "EOF"
 ... to boldly go where no one has gone before ...
 
 EOF
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

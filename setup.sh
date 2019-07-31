@@ -28,7 +28,8 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
 	rm -f "$HOME/.bash_profile"
   rm -f "$HOME/.fzf-tmux.sh"
   rm -f "$HOME/.bin/tmuxinator.bash"
-k
+  rm -f "$HOME/.zshrc"
+
   ## Add new symlinks
   echo "[setup.sh] Symlinking config files..."
 	ln -s "$PWD/configs/.tmux.conf" "$HOME/.tmux.conf"
@@ -38,6 +39,7 @@ k
 	ln -s "$PWD/configs/.bash_profile" "$HOME/.bash_profile"
 	ln -s "$PWD/configs/.bashrc" "$HOME/.bashrc"
   ln -s "$PWD/scripts/.fzf-tmux.sh" "$HOME/.fzf-tmux.sh"
+  ln -s "$PWD/configs/.zshrc" "$HOME/.zshrc"
 
   mkdir -p ~/.bin
   ln -s "$PWD/scripts/tmuxinator.bash" "$HOME/.bin/tmuxinator.bash"
@@ -81,6 +83,12 @@ k
   fi
 
   ~/.tmux/plugins/tpm/bin/install_plugins
+
+  #########
+  ## ZSH ##
+  #########
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
   #################
   ## ITerm Prefs ##
