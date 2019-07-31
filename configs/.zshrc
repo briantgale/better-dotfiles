@@ -76,8 +76,8 @@ plugins=(
   zsh-autosuggestions
 )
 
-source ~/.bash_profile
 source $ZSH/oh-my-zsh.sh
+source ~/.bash_profile
 
 # User configuration
 
@@ -105,4 +105,3 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

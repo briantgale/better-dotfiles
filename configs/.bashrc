@@ -48,7 +48,3 @@ cat << "EOF"
 ... to boldly go where no one has gone before ...
 
 EOF
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
