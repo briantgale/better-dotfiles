@@ -9,7 +9,7 @@ export ZSH="/Users/briantgale/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
+ZSH_THEME="bira"
 DEFAULT_USER="briantgale"
 
 # Set list of themes to pick from when loading at random
@@ -74,6 +74,11 @@ plugins=(
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
+  ruby
+  rvm
+  # thefuck
+  tmuxinator
+  # vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh

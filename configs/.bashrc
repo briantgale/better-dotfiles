@@ -20,13 +20,13 @@ alias v="nvim"
 alias vim="nvim"
 alias dotread="c && cat mdp ~/Projects/better-dotfiles/README.md"
 
-GIT_PS1_SHOWUPSTREAM="auto"
-GIT_PS1_SHOWCOLORHINTS="yes"
-GIT_PS1_SHOWDIRTYSTATE="yes"
-GIT_PS1_SHOWUNTRACKEDFILES="yes"
-
-source ~/.git-prompt.sh
-source ~/.git-completion.sh
+# GIT_PS1_SHOWUPSTREAM="auto"
+# GIT_PS1_SHOWCOLORHINTS="yes"
+# GIT_PS1_SHOWDIRTYSTATE="yes"
+# GIT_PS1_SHOWUNTRACKEDFILES="yes"
+# 
+# source ~/.git-prompt.sh
+# source ~/.git-completion.sh
 
 magenta=$(tput setaf 5)
 blue=$(tput setaf 4) 

@@ -64,6 +64,7 @@ if [[ $answer == "y" ]] || [[ $answer == "Y" ]] ; then
   checkAndInstallPackage "cmatrix"
   checkAndInstallPackage "tig"
   checkAndInstallPackage "zsh"
+  checkAndInstallPackage "thefuck"
 
   echo "[install-apps] OhMyZSH..."
   if [ echo "$SHELL" != "/bin/zsh"]; then
