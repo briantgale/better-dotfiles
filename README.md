@@ -37,3 +37,6 @@ This repo contains my dotfiles, as well as a few scripts used to make maintainin
 - <Leader> m - List open buggers
 - <CTRL> p - Fuzzyfind
 - <CTRL> n - Nerdtree
+
+## VIM Cheatsheet
+- d0 - Delete from cursor to beginning of the line
