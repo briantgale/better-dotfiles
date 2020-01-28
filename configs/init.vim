@@ -19,6 +19,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdcommenter'
   " Plug 'myusuf3/numbers.vim'
   Plug 'alvan/vim-closetag'
+	Plug 'tpope/vim-haml'
 
   " Git
   Plug 'tpope/vim-fugitive'
