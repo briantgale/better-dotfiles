@@ -31,8 +31,12 @@ This repo contains my dotfiles, as well as a few scripts used to make maintainin
 - I - Set to insert mode at the beginning of the current line
 - gg - Go to top of file
 - G - Go to bottom of file
+- d0 - Delete from cursor to beginning of line
 
 ## VIM Plugins
 - <Leader> m - List open buggers
 - <CTRL> p - Fuzzyfind
 - <CTRL> n - Nerdtree
+
+## VIM Cheatsheet
+- d0 - Delete from cursor to beginning of the line
