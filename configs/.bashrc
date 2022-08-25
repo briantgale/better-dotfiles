@@ -11,7 +11,7 @@ export FZF_DEFAULT_OPTS='
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-alias ll='ls -alFoLG'
+alias ll='exa --long'
 alias c='clear'
 alias cdp='cd ~/Projects'
 alias dot='cd ~/Projects/better-dotfiles'
@@ -19,6 +19,9 @@ alias clean_branches="git branch | grep -v "dev" | xargs git branch -D"
 alias v="nvim"
 alias vim="nvim"
 alias dotread="c && cat mdp ~/Projects/better-dotfiles/README.md"
+alias gs="git stash"
+alias gsl="git stash list"
+alias pop="git stash pop"
 
 # GIT_PS1_SHOWUPSTREAM="auto"
 # GIT_PS1_SHOWCOLORHINTS="yes"
@@ -31,6 +34,8 @@ alias dotread="c && cat mdp ~/Projects/better-dotfiles/README.md"
 magenta=$(tput setaf 5)
 blue=$(tput setaf 4) 
 reset=$(tput sgr0)
+
+export GPG_TTY=$(tty)
 
 #export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" "\\\$ ";'
 export PROMPT_COMMAND='__git_ps1 "\[$reset\][\[$blue\]\W\[$reset\]]" " ~ ";'
@@ -48,3 +53,6 @@ cat << "EOF"
 ... to boldly go where no one has gone before ...
 
 EOF
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

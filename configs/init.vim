@@ -13,6 +13,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'mxw/vim-jsx'
   Plug 'isruslan/vim-es6'
   Plug 'pangloss/vim-javascript'
+  Plug 'stephpy/vim-yaml'
+
   " Plug 'yggdroot/indentline'
   Plug 'rstacruz/vim-closer'
   Plug 'jiangmiao/auto-pairs'
@@ -216,7 +218,7 @@ nnoremap <silent>f :Ag<CR>
 let g:fzf_layout = { 'down': '~60%' }
 
 " Vim Fugitive
-nnoremap <silent> <Leader>gb :Gblame<CR>
+nnoremap <silent> <Leader>gb :Git blame<CR>
 
 " Airline
 let g:airline_theme='molokai'

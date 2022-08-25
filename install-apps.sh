@@ -64,7 +64,8 @@ if [[ $answer == "y" ]] || [[ $answer == "Y" ]] ; then
   checkAndInstallPackage "cmatrix"
   checkAndInstallPackage "tig"
   checkAndInstallPackage "zsh"
-  checkAndInstallPackage "thefuck"
+  checkAndInstallPackage "bat"
+  checkAndInstallPackage "exa"
 
   echo "[install-apps] OhMyZSH..."
   if [ echo "$SHELL" != "/bin/zsh"]; then
@@ -87,7 +88,7 @@ if [[ $answer == "y" ]] || [[ $answer == "Y" ]] ; then
   echo "[install-apps] Setting up additional packages..."
 
   #checkAndInstallGem "colorls"
-  checkAndInstallGem "tmuxinator"
+  # checkAndInstallGem "tmuxinator"
   checkAndInstallNpm "gtop"
 fi
 
