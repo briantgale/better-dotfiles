@@ -11,7 +11,7 @@ export FZF_DEFAULT_OPTS='
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-alias ll='exa --long'
+alias ll='exa -la'
 alias c='clear'
 alias cdp='cd ~/Projects'
 alias dot='cd ~/Projects/better-dotfiles'

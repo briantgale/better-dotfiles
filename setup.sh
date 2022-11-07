@@ -41,12 +41,15 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
   ln -s "$PWD/scripts/.fzf-tmux.sh" "$HOME/.fzf-tmux.sh"
   ln -s "$PWD/configs/.zshrc" "$HOME/.zshrc"
 
-  mkdir -p ~/.bin
-  ln -s "$PWD/scripts/tmuxinator.bash" "$HOME/.bin/tmuxinator.bash"
+  # mkdir -p ~/.bin
+  # ln -s "$PWD/scripts/tmuxinator.bash" "$HOME/.bin/tmuxinator.bash"
 
   ## NVim & Install vim plugins
   echo "[setup.sh] Setting up nvim packages..."
 	mkdir -p ~/.config/nvim 
+  ## TODO Make sure vim plugged is installed
+  ## sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+  ##       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	ln -s "$PWD/configs/init.vim" "$HOME/.config/nvim/init.vim"
   nvim +silent +PlugInstall +qall
   echo "y y n" | ~/.fzf/install
