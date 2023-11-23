@@ -10,7 +10,9 @@ export ZSH="/Users/$(whoami)/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="simple"
-ZSH_THEME="tonotdo"
+# ZSH_THEME="tonotdo" ## ***
+ZSH_THEME="eastwood"
+# ZSH_THEME="apple" **
 DEFAULT_USER="$(whoami)"
 
 # Set list of themes to pick from when loading at random
@@ -75,10 +77,15 @@ plugins=(
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
+  rails
   ruby
   rvm
-  # thefuck
-  tmuxinator
+  sublime
+  docker
+  macos
+  bundler
+  colorize
+  # tmuxinator
   # vi-mode
 )
 

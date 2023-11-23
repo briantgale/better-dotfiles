@@ -11,7 +11,8 @@ export FZF_DEFAULT_OPTS='
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-alias ll='exa -la'
+alias ll='exa -la --sort name'
+alias tree='exa --tree'
 alias c='clear'
 alias cdp='cd ~/Projects'
 alias dot='cd ~/Projects/better-dotfiles'
@@ -22,6 +23,7 @@ alias dotread="c && cat mdp ~/Projects/better-dotfiles/README.md"
 alias gs="git stash"
 alias gsl="git stash list"
 alias pop="git stash pop"
+alias python="python3"
 
 # GIT_PS1_SHOWUPSTREAM="auto"
 # GIT_PS1_SHOWCOLORHINTS="yes"
@@ -41,6 +43,8 @@ export GPG_TTY=$(tty)
 export PROMPT_COMMAND='__git_ps1 "\[$reset\][\[$blue\]\W\[$reset\]]" " ~ ";'
 # export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
+# fortune | cowsay -f tux
+
 cat << "EOF"
                                 _____
                        __...---'-----`---...__
@@ -55,4 +59,6 @@ cat << "EOF"
 EOF
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
+
+
