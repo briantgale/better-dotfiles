@@ -71,6 +71,7 @@ if [[ $answer == "y" ]] || [[ $answer == "Y" ]] ; then
   checkAndInstallPackage "task"
   checkAndInstallPackage "cowsay"
   checkAndInstallPackage "fortune"
+  checkAndInstallPackage "tmuxinator"
 
   echo "[install-apps] OhMyZSH..."
   if [ echo "$SHELL" != "/bin/zsh"]; then

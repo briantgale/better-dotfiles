@@ -86,7 +86,7 @@ plugins=(
   macos
   bundler
   colorize
-  # tmuxinator
+  tmuxinator
   # vi-mode
 )
 
