@@ -11,8 +11,9 @@ export ZSH="/Users/$(whoami)/.oh-my-zsh"
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="simple"
 # ZSH_THEME="tonotdo" ## ***
-ZSH_THEME="eastwood"
-# ZSH_THEME="apple" **
+# ZSH_THEME="eastwood"
+# ZSH_THEME="apple"
+ZSH_THEME="amuse"
 DEFAULT_USER="$(whoami)"
 
 # Set list of themes to pick from when loading at random

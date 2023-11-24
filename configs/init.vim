@@ -14,6 +14,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'isruslan/vim-es6'
   Plug 'pangloss/vim-javascript'
   Plug 'stephpy/vim-yaml'
+  Plug 'elemecca/dockerfile.vim'
+  Plug 'hallison/vim-markdown'
 
   " Plug 'yggdroot/indentline'
   Plug 'rstacruz/vim-closer'
@@ -36,6 +38,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'slim-template/vim-slim'
+  Plug 'sainnhe/everforest'
+  Plug 'EdenEast/nightfox.nvim'
 
   " Text completion & Syntax Checking
   " Plug 'w0rp/ale' " Linting
@@ -63,7 +67,10 @@ nmap <leader>pp :PlugInstall<CR>
 "" Color Scheme
 " colorscheme iceberg
 " colorscheme onedark
-colorscheme molokai
+" colorscheme molokai
+" colorscheme everforest
+colorscheme nightfox
+set background=dark
 
 " Enable syntax highlighting
 syntax on
@@ -105,7 +112,7 @@ set smartcase  " ... unless they contain at least one capital letter
 " Buffers
 nnoremap <silent>; :Buffers<CR>
 nnoremap <Leader>l :bn<CR>
-nnoremap <Leader>h :bn<CR>
+nnoremap <Leader>h :bp<CR>
 
 " Use the system clipboard when using y and p
 set clipboard+=unnamed
@@ -142,10 +149,6 @@ set undodir=~/.vim/undodir
 set undofile
 
 " Split windows
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
 nnoremap <silent> <Leader>v :split<CR>
 nnoremap <silent> <Leader>b :vsplit<CR>
 nnoremap <silent> <Leader>q :close<CR>
@@ -193,7 +196,7 @@ let g:NERDTreeQuitOnOpen = 1
 map <C-n> :NERDTreeToggle<CR>
 
 " NerdCommenter
-nnoremap <leader>cc NERDComToggleComment<CR>
+" nnoremap <leader>cc NERDComToggleComment<CR>
 
 " GOYO
 " let g:goyo_width = 160
@@ -205,7 +208,7 @@ nnoremap <leader>cc NERDComToggleComment<CR>
 let g:closetag_filenames = "*.html.erb,*.html,*.xhtml,*.phtml, *.js"
 
 " Ale
-map <leader>at :ALEToggle<CR>
+" map <leader>at :ALEToggle<CR>
 " let g:ale_sign_column_always = 1
 " let g:ale_fixers = {'ruby': ['ruby']}
 

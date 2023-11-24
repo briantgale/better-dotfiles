@@ -5,6 +5,7 @@
 This repo contains my dotfiles, as well as a few scripts used to make maintaining them on multiple machines simpler.
 
 ## TMux Config
+
 - Prefix - CTRL+ a
 - Rename Session - <Prefix> + $
 - List Windows - <Prefix> + w
@@ -33,10 +34,26 @@ This repo contains my dotfiles, as well as a few scripts used to make maintainin
 - G - Go to bottom of file
 - d0 - Delete from cursor to beginning of line
 
-## VIM Plugins
-- <Leader> m - List open buggers
-- <CTRL> p - Fuzzyfind
-- <CTRL> n - Nerdtree
+### Buffers
+- ; = Show buggers
+- , + l = next buffer
+- , + p = prev buffer
 
-## VIM Cheatsheet
-- d0 - Delete from cursor to beginning of the line
+### Panes
+- , + v = Horizontal Split
+- , + b = Vertical Split
+- , + q = Close
+- ctrl + w + | = Maximize
+- ctrl + w + '=' = Equal size
+- ctrl + w + [hjkl] = Navigate 
+
+### Plugins
+
+#### File Nav
+- ctrl + n = NERD Tree
+- , + m = Buffers
+- ctrl + p = Fuzzyfind
+
+#### Git
+- , + gg = Git messenger
+- , + gb = Git blame
