@@ -131,8 +131,8 @@ hi CursorLineNr ctermfg=15 ctermbg=33
 " Cursor line & column
 set cursorcolumn
 set cursorline
-hi CursorLine ctermbg=235
-hi CursorColumn ctermbg=235
+highlight CursorLine guibg=#283245
+highlight CursorColumn guibg=#283245
 
 " Move lines with arrow keys
 " nnoremap <down> :m .+1<CR>==
