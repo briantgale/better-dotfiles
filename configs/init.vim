@@ -67,9 +67,9 @@ nmap <leader>pp :PlugInstall<CR>
 "" Color Scheme
 " colorscheme iceberg
 " colorscheme onedark
-" colorscheme molokai
+colorscheme molokai
 " colorscheme everforest
-colorscheme nightfox
+" colorscheme nightfox
 set background=dark
 
 " Enable syntax highlighting

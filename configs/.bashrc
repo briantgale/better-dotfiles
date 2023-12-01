@@ -24,6 +24,7 @@ alias gs="git stash"
 alias gsl="git stash list"
 alias pop="git stash pop"
 alias python="python3"
+alias swapssl="~/Projects/better-dotfiles/swap-ssl.sh"
 
 # GIT_PS1_SHOWUPSTREAM="auto"
 # GIT_PS1_SHOWCOLORHINTS="yes"
@@ -60,5 +61,4 @@ EOF
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"
-
 
