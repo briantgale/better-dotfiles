@@ -38,8 +38,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'slim-template/vim-slim'
-  Plug 'sainnhe/everforest'
-  Plug 'EdenEast/nightfox.nvim'
+  " Plug 'sainnhe/everforest'
+  " Plug 'EdenEast/nightfox.nvim'
 
   " Text completion & Syntax Checking
   " Plug 'w0rp/ale' " Linting
@@ -53,6 +53,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'djoshea/vim-autoread'
   Plug 'ap/vim-buftabline'
   " Plug 'metakirby5/codi.vim'
+  
+  Plug 'github/copilot.vim'
 call plug#end()
 
 """""""""
@@ -158,6 +160,9 @@ nnoremap <silent> <Leader>q :close<CR>
 "" PLUGINS ""
 """""""""""""
 
+" Copilot
+let g:copilot#keymap = '<leader>cp'
+ 
 " Codi for code scratchpad
 " nnoremap <Leader>irb :Codi ruby<CR>
 " nnoremap <Leader>q :Codi!<CR>
