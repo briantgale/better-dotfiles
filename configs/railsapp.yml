@@ -1,0 +1,18 @@
+name: jdm
+root: ~/Projects/<%= @args[0] %>
+
+windows:
+  - editors:
+      layout: even-horizontal
+      panes:
+        - nvim
+        - nvim
+        - nvim
+  - server:
+      layout: even-horizontal
+      panes:
+        - rc
+        - rs
+  - term:
+      panes:
+        - ~

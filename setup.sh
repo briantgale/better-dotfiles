@@ -29,6 +29,7 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
   rm -f "$HOME/.fzf-tmux.sh"
   rm -f "$HOME/.bin/tmuxinator.bash"
   rm -f "$HOME/.zshrc"
+  rm -f "$HOME/.config/tmuxinator/railsapp.yml"
 
   ## Add new symlinks
   echo "[setup.sh] Symlinking config files..."
@@ -40,6 +41,7 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
 	ln -s "$PWD/configs/.bashrc" "$HOME/.bashrc"
   ln -s "$PWD/scripts/.fzf-tmux.sh" "$HOME/.fzf-tmux.sh"
   ln -s "$PWD/configs/.zshrc" "$HOME/.zshrc"
+  ln -s "$PWD/configs/railsapp.yml" "$HOME/.config/tmuxinator/railsapp.yml"
 
   # mkdir -p ~/.bin
   # ln -s "$PWD/scripts/tmuxinator.bash" "$HOME/.bin/tmuxinator.bash"
