@@ -1,3 +1,8 @@
+# My rails app editing setup
+#
+# Param 0 - directory of the project
+# Param 1 (optional) - optional port that rails server should run on
+
 name: <%= args[0] %>
 root: ~/Projects/<%= @args[0] %>
 
@@ -10,5 +15,9 @@ windows:
   - servers:
       layout: even-horizontal
       panes:
-        - ll
-        - rs
+        # For some reason, these panes open with the default ruby version,
+        # and not the version specified in .ruby-version. And it doesn't use
+        # the gemset specified in .ruby-gemset. Switching out of the dir
+        # and back fixes the issue.
+        - cd .. && cd - && ll
+        - cd .. && cd - && rs <%= @args[1] && "-p #{@args[1]}" %>
