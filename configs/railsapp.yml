@@ -3,7 +3,7 @@
 # Param 0 - directory of the project
 # Param 1 (optional) - optional port that rails server should run on
 
-name: <%= args[0] %>
+name: <%= args[0] %><%= args[1] && " #{args[1]}" %>
 root: ~/Projects/<%= @args[0] %>
 
 windows:
