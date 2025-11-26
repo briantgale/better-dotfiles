@@ -80,7 +80,6 @@ plugins=(
   zsh-autosuggestions
   rails
   ruby
-  rvm
   sublime
   docker
   macos
@@ -119,5 +118,8 @@ source ~/.bash_profile
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$HOME/rubyonmac:$PATH"
+
+eval "$(~/.local/bin/mise activate zsh)"

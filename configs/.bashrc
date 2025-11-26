@@ -11,7 +11,7 @@ export FZF_DEFAULT_OPTS='
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-alias ll='exa -la --sort name'
+alias ll='eza -la --sort name'
 alias tree='exa --tree'
 alias c='clear'
 alias cdp='cd ~/Projects'
@@ -58,7 +58,4 @@ cat << "EOF"
 ... to boldly go where no one has gone before ...
 
 EOF
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
 

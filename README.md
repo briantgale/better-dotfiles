@@ -4,6 +4,35 @@
 
 This repo contains my dotfiles, as well as a few scripts used to make maintaining them on multiple machines simpler.
 
+## Ansible-based setup (new)
+
+This repository now includes an Ansible playbook that replaces the old shell scripts for linking dotfiles, installing Homebrew packages, setting up Neovim/tmux/Zsh, Powerline fonts, npm globals, and iTerm2 preferences.
+
+Quick start:
+
+- Prereqs: Ansible installed (brew install ansible) and Git.
+- From the repo root, run:
+
+  ansible-playbook ansible/site.yml -K
+
+  The -K flag will prompt for your sudo password if needed by Homebrew or system tasks.
+
+What it does (mirrors old scripts):
+- Symlinks files from configs/ and scripts/ into your home directory
+- Installs/updates Homebrew and packages defined in ansible/site.yml
+- Ensures Neovim config and plugins (vim-plug) are installed
+- Installs/updates Powerline fonts locally
+- Installs tmux plugin manager (TPM) and plugins
+- Installs Oh My Zsh (if you’re already using zsh) and zsh plugins
+- Installs npm global packages listed in ansible/site.yml
+- Copies iTerm2 preferences from configs/ if present and restarts cfprefsd
+
+Options:
+- You can toggle optional components like RVM by editing ansible/site.yml (set install_rvm: true).
+
+Notes:
+- The old scripts (setup.sh, install-apps.sh) remain for reference but the Ansible playbook is now the preferred and idempotent way to configure a machine.
+
 ## TMux Config
 
 - Prefix - CTRL+ a

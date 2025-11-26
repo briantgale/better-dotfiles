@@ -54,7 +54,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-buftabline'
   " Plug 'metakirby5/codi.vim'
   
-  Plug 'github/copilot.vim'
+  " Plug 'github/copilot.vim'
 call plug#end()
 
 """""""""

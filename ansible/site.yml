@@ -1,0 +1,225 @@
+---
+- name: Setup local macOS workstation with dotfiles and tools
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    repo_root: "{{ playbook_dir }}/.."
+    home: "{{ lookup('env','HOME') }}"
+    configs_dir: "{{ repo_root }}/configs"
+    scripts_dir: "{{ repo_root }}/scripts"
+    # Use a dedicated clone dir for Powerline fonts to avoid conflicts with repo's own fonts directory
+    powerline_fonts_dir: "{{ repo_root }}/.powerline-fonts"
+    # Toggle optional components
+    install_rvm: false
+    # Package lists (mirrors install-apps.sh)
+    brew_packages:
+      - neovim
+      - tmux
+      - git
+      - redis
+      - terminal-notifier
+      - mdp
+      - fzf
+      - the_silver_searcher
+      - npm
+      - cmatrix
+      - tig
+      - zsh
+      - bat
+      # - exa
+      - ranger
+      - glances
+      - task
+      - cowsay
+      - fortune
+      - tmuxinator
+      - tldr
+    npm_globals:
+      - gtop
+  tasks:
+    - name: Ensure Homebrew is installed
+      shell: |
+        if ! command -v brew >/dev/null 2>&1; then
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
+      args:
+        executable: /bin/bash
+      changed_when: false
+
+    # - name: Update Homebrew
+    #   shell: |
+    #     brew update && brew doctor
+    #   changed_when: false
+
+    - name: Install Homebrew packages
+      shell: |
+        if ! brew list --versions {{ item }} >/dev/null 2>&1; then
+          brew install {{ item }}
+        fi
+      loop: "{{ brew_packages }}"
+      changed_when: false
+
+    - name: Ensure ~/.config exists
+      file:
+        path: "{{ home }}/.config"
+        state: directory
+
+    - name: Ensure tmuxinator config dir exists
+      file:
+        path: "{{ home }}/.config/tmuxinator"
+        state: directory
+
+    - name: Remove legacy files that may conflict with links
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "{{ home }}/.tmux.conf"
+        - "{{ home }}/.git-completion.sh"
+        - "{{ home }}/.git-prompt.sh"
+        - "{{ home }}/.config/nvim/init.vim"
+        - "{{ home }}/.gitconfig"
+        - "{{ home }}/.bashrc"
+        - "{{ home }}/.bash_profile"
+        - "{{ home }}/.fzf-tmux.sh"
+        - "{{ home }}/.zshrc"
+        - "{{ home }}/.config/tmuxinator/railsapp.yml"
+
+    - name: Create symlinks for dotfiles
+      file:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: link
+        force: true
+      loop:
+        - { src: "{{ configs_dir }}/.tmux.conf", dest: "{{ home }}/.tmux.conf" }
+        - { src: "{{ configs_dir }}/.git-completion.sh", dest: "{{ home }}/.git-completion.sh" }
+        - { src: "{{ configs_dir }}/.git-prompt.sh", dest: "{{ home }}/.git-prompt.sh" }
+        - { src: "{{ configs_dir }}/.gitconfig", dest: "{{ home }}/.gitconfig" }
+        - { src: "{{ configs_dir }}/.bash_profile", dest: "{{ home }}/.bash_profile" }
+        - { src: "{{ configs_dir }}/.bashrc", dest: "{{ home }}/.bashrc" }
+        - { src: "{{ scripts_dir }}/.fzf-tmux.sh", dest: "{{ home }}/.fzf-tmux.sh" }
+        - { src: "{{ configs_dir }}/.zshrc", dest: "{{ home }}/.zshrc" }
+        - { src: "{{ configs_dir }}/railsapp.yml", dest: "{{ home }}/.config/tmuxinator/railsapp.yml" }
+
+    - name: Ensure Neovim config dir exists
+      file:
+        path: "{{ home }}/.config/nvim"
+        state: directory
+
+    - name: Link Neovim init.vim
+      file:
+        src: "{{ configs_dir }}/init.vim"
+        dest: "{{ home }}/.config/nvim/init.vim"
+        state: link
+        force: true
+
+    - name: Install vim-plug for Neovim if missing
+      shell: |
+        test -f "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim || \
+        sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+      args:
+        executable: /bin/bash
+      changed_when: false
+
+    - name: Install Neovim plugins (vim-plug)
+      shell: nvim +silent +PlugInstall +qall
+      environment:
+        TERM: xterm-256color
+      changed_when: false
+      failed_when: false
+
+    - name: Run fzf install script non-interactively
+      shell: |
+        if [ -x "${HOME}/.fzf/install" ]; then
+          yes | "${HOME}/.fzf/install"
+        fi
+      changed_when: false
+      failed_when: false
+
+    - name: Install or update Powerline fonts repo
+      shell: |
+        if [ ! -d "{{ powerline_fonts_dir }}/.git" ]; then
+          rm -rf "{{ powerline_fonts_dir }}"
+          git clone https://github.com/powerline/fonts.git --depth=1 "{{ powerline_fonts_dir }}"
+        else
+          (cd "{{ powerline_fonts_dir }}" && git pull --ff-only)
+        fi
+      changed_when: false
+
+    - name: Install Powerline fonts
+      shell: |
+        (cd "{{ powerline_fonts_dir }}" && chmod u+x install.sh && ./install.sh)
+      changed_when: false
+
+    - name: Ensure TPM (Tmux Plugin Manager) installed
+      shell: |
+        mkdir -p "${HOME}/.tmux/plugins" && \
+        if [ ! -d "${HOME}/.tmux/plugins/tpm/.git" ]; then
+          git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+        else
+          (cd "${HOME}/.tmux/plugins/tpm" && git pull --ff-only)
+        fi
+      changed_when: false
+
+    - name: Install tmux plugins via TPM
+      shell: "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
+      changed_when: false
+      failed_when: false
+
+    - name: Install Oh My Zsh if zsh is default shell but OMZ missing
+      shell: |
+        if [ -z "${ZSH}" ] && [ "$(basename -- "$SHELL")" = "zsh" ]; then
+          RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
+          sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        fi
+      args:
+        executable: /bin/bash
+      changed_when: false
+      failed_when: false
+
+    - name: Install zsh plugins (syntax highlighting and autosuggestions)
+      shell: |
+        ZSH_CUSTOM_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+        mkdir -p "$ZSH_CUSTOM_DIR/plugins"
+        if [ ! -d "$ZSH_CUSTOM_DIR/plugins/zsh-syntax-highlighting/.git" ]; then
+          git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM_DIR/plugins/zsh-syntax-highlighting"
+        else
+          (cd "$ZSH_CUSTOM_DIR/plugins/zsh-syntax-highlighting" && git pull --ff-only)
+        fi
+        if [ ! -d "$ZSH_CUSTOM_DIR/plugins/zsh-autosuggestions/.git" ]; then
+          git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM_DIR/plugins/zsh-autosuggestions"
+        else
+          (cd "$ZSH_CUSTOM_DIR/plugins/zsh-autosuggestions" && git pull --ff-only)
+        fi
+      changed_when: false
+      failed_when: false
+
+    - name: Install global npm packages
+      shell: |
+        if ! npm list -g --depth=0 {{ item }} >/dev/null 2>&1; then
+          npm install -g {{ item }}
+        fi
+      loop: "{{ npm_globals }}"
+      changed_when: false
+      failed_when: false
+
+    - name: Copy iTerm2 preferences (macOS) if present in repo
+      shell: |
+        if [ -f "{{ configs_dir }}/com.googlecode.iterm2.plist" ]; then
+          cp -rf "{{ configs_dir }}/com.googlecode.iterm2.plist" "${HOME}/Library/Preferences"
+          (cd "${HOME}/Library/Preferences" && /usr/bin/defaults read com.googlecode.iterm2.plist || true)
+          /usr/bin/killall cfprefsd || true
+        fi
+      changed_when: false
+      failed_when: false
+
+    - name: Optionally install RVM
+      when: install_rvm
+      shell: |
+        if ! command -v rvm >/dev/null 2>&1; then
+          command -v gpg2 >/dev/null 2>&1 && gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0EE739499BDB || true
+          \curl -sSL https://get.rvm.io | bash -s stable
+        fi
+      changed_when: false
