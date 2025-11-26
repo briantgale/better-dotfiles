@@ -10,6 +10,8 @@
     scripts_dir: "{{ repo_root }}/scripts"
     # Use a dedicated clone dir for Powerline fonts to avoid conflicts with repo's own fonts directory
     powerline_fonts_dir: "{{ repo_root }}/.powerline-fonts"
+    # RubyMine config in repo (optional)
+    rubymine_repo_dir: "{{ configs_dir }}/rubymine"
     # Toggle optional components
     install_rvm: false
     # Package lists (mirrors install-apps.sh)
@@ -22,7 +24,8 @@
       - mdp
       - fzf
       - the_silver_searcher
-      - npm
+      # Homebrew no longer provides a standalone npm formula; Node includes npm
+      - node
       - cmatrix
       - tig
       - zsh
@@ -102,6 +105,7 @@
         - { src: "{{ scripts_dir }}/.fzf-tmux.sh", dest: "{{ home }}/.fzf-tmux.sh" }
         - { src: "{{ configs_dir }}/.zshrc", dest: "{{ home }}/.zshrc" }
         - { src: "{{ configs_dir }}/railsapp.yml", dest: "{{ home }}/.config/tmuxinator/railsapp.yml" }
+        - { src: "{{ configs_dir }}/.ideavimrc", dest: "{{ home }}/.ideavimrc" }
 
     - name: Ensure Neovim config dir exists
       file:

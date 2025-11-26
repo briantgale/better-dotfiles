@@ -1,0 +1,128 @@
+" ============================================================
+" IdeaVim config adapted from your Neovim init.vim
+" Target: RubyMine + IdeaVim
+" ============================================================
+
+let mapleader = ","
+
+" ------------------------------------------------------------
+" Edit / reload this config (from your: <leader>vv / <leader>sv)
+" ------------------------------------------------------------
+nnoremap <leader>vv :edit ~/.ideavimrc<CR>
+nnoremap <leader>sv :source ~/.ideavimrc<CR>
+
+" ------------------------------------------------------------
+" Basic settings that IdeaVim respects
+" (IDE handles colors, fonts, tabs, etc.)
+" ------------------------------------------------------------
+set number
+set ignorecase
+set smartcase
+
+" Toggle numbers (same as your <leader>n)
+nnoremap <leader>n :set invnumber<CR>
+
+" Quickly insert an empty new line without entering insert mode
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
+
+" ------------------------------------------------------------
+" "Buffers" → Tabs / Recent files
+" ------------------------------------------------------------
+" In RubyMine, files = editor tabs. We'll keep your habits:
+
+" ; used to be :Buffers (fzf). Use RecentFiles popup instead.
+nnoremap <silent> ; :action RecentFiles<CR>
+
+" <leader>l / <leader>h were :bn / :bp
+" Map them to next/previous editor tab:
+nnoremap <Leader>l :action NextTab<CR>
+nnoremap <Leader>h :action PreviousTab<CR>
+
+" Optional: jump directly to tab N (like buffergator-ish)
+nnoremap <Leader>1 :action GoToTab1<CR>
+nnoremap <Leader>2 :action GoToTab2<CR>
+nnoremap <Leader>3 :action GoToTab3<CR>
+nnoremap <Leader>4 :action GoToTab4<CR>
+nnoremap <Leader>5 :action GoToTab5<CR>
+nnoremap <Leader>6 :action GoToTab6<CR>
+nnoremap <Leader>7 :action GoToTab7<CR>
+nnoremap <Leader>8 :action GoToTab8<CR>
+nnoremap <Leader>9 :action GoToTab9<CR>
+
+" Buffergator toggle → Switcher (files + tool windows)
+" (closest "buffer list" analogue)
+nnoremap <leader>m :action Switcher<CR>
+
+" ------------------------------------------------------------
+" Splits / panes (your <leader>v / <leader>b / <leader>q)
+" ------------------------------------------------------------
+
+" In Neovim:
+"   <leader>v :split
+"   <leader>b :vsplit
+"   <leader>q :close
+" JetBrains uses actions, so:
+
+" Horizontal split (top/bottom)
+nnoremap <silent> <Leader>v :action SplitHorizontally<CR>
+
+" Vertical split (side by side)
+nnoremap <silent> <Leader>b :action SplitVertically<CR>
+
+" Close current split/tab
+nnoremap <silent> <Leader>q :action CloseContent<CR>
+
+" Move between splits with Ctrl-h/j/k/l (Neovim/tmux style)
+nnoremap <C-h> :action MoveEditorLeft<CR>
+nnoremap <C-j> :action MoveEditorDown<CR>
+nnoremap <C-k> :action MoveEditorUp<CR>
+nnoremap <C-l> :action MoveEditorRight<CR>
+
+" Optional: unsplit helpers if you want them:
+" nnoremap <Leader>sc :action Unsplit<CR>
+" nnoremap <Leader>sa :action UnsplitAll<CR>
+
+" ------------------------------------------------------------
+" "NERDTree" → Project tool window
+" ------------------------------------------------------------
+" You used: map <C-n> :NERDTreeToggle<CR>
+" That same chord can show/hide the Project sidebar.
+
+nnoremap <C-n> :action ActivateProjectToolWindow<CR>
+
+" ------------------------------------------------------------
+" FZF / Ag → JetBrains equivalents
+" ------------------------------------------------------------
+" You had:
+"   <C-p> :FZF
+"   f     :Ag
+
+" <C-p> → Go to file (same intent as FZF file search)
+nnoremap <silent> <C-p> :action GotoFile<CR>
+
+" f → Find in path (global text search, like Ag/RG)
+nnoremap <silent> f :action FindInPath<CR>
+
+" ------------------------------------------------------------
+" Git integrations (Fugitive, GitGutter, GitMessenger)
+" ------------------------------------------------------------
+" <leader>gb :Git blame  → Annotate current file
+nnoremap <silent> <Leader>gb :action Annotate<CR>
+
+" <leader>gg :Git messenger → open Version Control tool window
+nnoremap <silent> <Leader>gg :action ActivateVersionControlToolWindow<CR>
+
+" Your old <leader>g toggled GitGutter; in RubyMine the gutter
+" is always there, so we reuse <leader>g as a "go to VCS" prefix:
+" (already done via <leader>gg)
+
+" ------------------------------------------------------------
+" Misc. quality-of-life mappings from your config
+" ------------------------------------------------------------
+
+" XTermColorTable → Quick switch scheme (kinda similar "visual" action)
+nnoremap <silent> <Leader>ct :action QuickChangeScheme<CR>
+
+" Terminal tool window (no exact old mapping, but handy)
+nnoremap <Leader>t :action ActivateTerminalToolWindow<CR>

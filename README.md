@@ -33,6 +33,17 @@ Options:
 Notes:
 - The old scripts (setup.sh, install-apps.sh) remain for reference but the Ansible playbook is now the preferred and idempotent way to configure a machine.
 
+## RubyMine and IdeaVim configuration
+
+- IdeaVim: This repo includes a synced IdeaVim config at `configs/.ideavimrc`. The Ansible playbook will link it to `~/.ideavimrc` so RubyMine/WebStorm/IntelliJ with IdeaVim will pick it up automatically.
+- RubyMine settings (optional): If you add a folder at `configs/rubymine` with any standard RubyMine setting subfolders (e.g., `keymaps`, `colors`, `options`, `inspection`, etc.), the playbook will detect your latest local RubyMine config directory on macOS and symlink each item from `configs/rubymine/*` into that directory. This lets you share editor color schemes, keymaps, inspections, and more across machines.
+
+Notes on RubyMine detection on macOS:
+- The playbook searches for the newest directory matching `RubyMine*` under:
+  - `~/Library/Application Support/JetBrains/`
+  - and falls back to `~/Library/Preferences/`
+- If RubyMine isn't installed yet, the task is skipped. You can re-run the playbook after installing RubyMine.
+
 ## TMux Config
 
 - Prefix - CTRL+ a
