@@ -121,5 +121,6 @@ source ~/.bash_profile
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/rubyonmac:$PATH"
+export PATH="/Applications/RubyMine.app/Contents/MacOS:$PATH"
 
 eval "$(~/.local/bin/mise activate zsh)"

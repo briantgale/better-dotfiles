@@ -5,6 +5,9 @@
 
 let mapleader = ","
 
+" Use the system clipboard
+set clipboard=unnamed
+
 " ------------------------------------------------------------
 " Edit / reload this config (from your: <leader>vv / <leader>sv)
 " ------------------------------------------------------------
