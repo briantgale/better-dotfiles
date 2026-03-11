@@ -11,3 +11,5 @@
 	lg = log -p
 [push]
 	default = simple
+[init]
+	defaultBranch = main
