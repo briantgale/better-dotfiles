@@ -1,0 +1,11 @@
+---
+- name: Install Oh My Zsh if zsh is default shell but OMZ missing
+  shell: |
+    if [ -z "${ZSH}" ] && [ "$(basename -- "$SHELL")" = "zsh" ]; then
+      RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    fi
+  args:
+    executable: /bin/bash
+  changed_when: false
+  failed_when: false

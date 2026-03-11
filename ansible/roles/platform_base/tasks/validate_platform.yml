@@ -1,0 +1,6 @@
+---
+- name: Fail for unsupported platform
+  assert:
+    that:
+      - ansible_system == "Darwin" or ansible_os_family == "Debian"
+    fail_msg: "This playbook currently supports macOS and Debian-family Linux only."

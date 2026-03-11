@@ -1,0 +1,15 @@
+---
+- name: Install or update Powerline fonts repo
+  shell: |
+    if [ ! -d "{{ powerline_fonts_dir }}/.git" ]; then
+      rm -rf "{{ powerline_fonts_dir }}"
+      git clone https://github.com/powerline/fonts.git --depth=1 "{{ powerline_fonts_dir }}"
+    else
+      (cd "{{ powerline_fonts_dir }}" && git pull --ff-only)
+    fi
+  changed_when: false
+
+- name: Install Powerline fonts
+  shell: |
+    (cd "{{ powerline_fonts_dir }}" && chmod u+x install.sh && ./install.sh)
+  changed_when: false

@@ -1,0 +1,15 @@
+---
+- name: Link Neovim config
+  import_tasks: neovim_link.yml
+  tags:
+    - editor
+
+- name: Install vim-plug
+  import_tasks: vim_plug.yml
+  tags:
+    - editor
+
+- name: Install Neovim plugins
+  import_tasks: plugins.yml
+  tags:
+    - editor

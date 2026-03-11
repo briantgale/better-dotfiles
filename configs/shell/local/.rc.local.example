@@ -1,0 +1,16 @@
+# Machine-specific shell configuration.
+# Copy this file to ~/.rc.local and customize for your machine.
+# ~/.rc.local is sourced by common.sh and is NOT committed to the repo.
+
+# Dotfiles directory shortcut (if different from default ~/Projects/better-dotfiles)
+# alias dot='cd ~/code/dotfiles'
+
+# Scripts that live in the dotfiles repo
+# alias swapssl='~/Projects/better-dotfiles/scripts/swap-ssl.sh'
+
+# Machine-specific PATH entries
+# export PATH="/opt/homebrew/bin:$PATH"
+
+# Work vs personal git identity (overrides ~/.gitconfig.local per-directory)
+# export GIT_AUTHOR_EMAIL="you@company.com"
+# export GIT_COMMITTER_EMAIL="you@company.com"

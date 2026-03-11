@@ -1,0 +1,8 @@
+---
+- name: Install vim-plug for Neovim if missing
+  shell: |
+    test -f "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim || \
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  args:
+    executable: /bin/bash
+  changed_when: false

@@ -1,0 +1,10 @@
+---
+- name: Copy iTerm2 preferences (macOS) if present in repo
+  shell: |
+    if [ -f "{{ configs_dir }}/macos/com.googlecode.iterm2.plist" ]; then
+      cp -rf "{{ configs_dir }}/macos/com.googlecode.iterm2.plist" "${HOME}/Library/Preferences"
+      (cd "${HOME}/Library/Preferences" && /usr/bin/defaults read com.googlecode.iterm2.plist || true)
+      /usr/bin/killall cfprefsd || true
+    fi
+  changed_when: false
+  failed_when: false

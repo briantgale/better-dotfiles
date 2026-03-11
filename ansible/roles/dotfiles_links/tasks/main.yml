@@ -1,0 +1,15 @@
+---
+- name: Ensure base config directories exist
+  import_tasks: directories.yml
+  tags:
+    - dotfiles
+
+- name: Remove conflicting legacy paths
+  import_tasks: remove_conflicts.yml
+  tags:
+    - dotfiles
+
+- name: Create dotfile symlinks
+  import_tasks: symlinks.yml
+  tags:
+    - dotfiles

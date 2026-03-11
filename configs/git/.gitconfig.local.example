@@ -1,0 +1,8 @@
+# Machine-specific git configuration.
+# Copy this file to ~/.gitconfig.local and fill in your details.
+# ~/.gitconfig.local is NOT committed to the repo.
+
+[user]
+	name = Your Name
+	email = you@example.com
+	# signingkey = YOUR_GPG_KEY_ID

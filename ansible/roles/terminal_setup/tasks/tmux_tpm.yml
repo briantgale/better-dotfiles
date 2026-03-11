@@ -1,0 +1,15 @@
+---
+- name: Ensure TPM (Tmux Plugin Manager) installed
+  shell: |
+    mkdir -p "${HOME}/.tmux/plugins" && \
+    if [ ! -d "${HOME}/.tmux/plugins/tpm/.git" ]; then
+      git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+    else
+      (cd "${HOME}/.tmux/plugins/tpm" && git pull --ff-only)
+    fi
+  changed_when: false
+
+- name: Install tmux plugins via TPM
+  shell: "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
+  changed_when: false
+  failed_when: false

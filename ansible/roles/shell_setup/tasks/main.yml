@@ -1,0 +1,10 @@
+---
+- name: Install Oh My Zsh
+  import_tasks: oh_my_zsh.yml
+  tags:
+    - shell
+
+- name: Install zsh plugins
+  import_tasks: zsh_plugins.yml
+  tags:
+    - shell

@@ -1,0 +1,7 @@
+---
+- name: Install Neovim plugins (vim-plug)
+  shell: nvim +silent +PlugInstall +qall
+  environment:
+    TERM: xterm-256color
+  changed_when: false
+  failed_when: false

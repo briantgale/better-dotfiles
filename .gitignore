@@ -3,3 +3,5 @@ fonts/
 ~/
 .idea/*
 .powerline-fonts
+configs/shell/local/*.local
+configs/git/*.local

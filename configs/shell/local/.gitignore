@@ -1,0 +1,3 @@
+# Machine-specific local overrides are not committed to the repo.
+# Copy .rc.local.example to ~/.rc.local and customize for your machine.
+*.local

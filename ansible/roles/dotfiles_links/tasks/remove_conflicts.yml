@@ -1,0 +1,24 @@
+---
+- name: Remove legacy files that may conflict with links
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "{{ home }}/.tmux.conf"
+    - "{{ home }}/.git-completion.sh"
+    - "{{ home }}/.git-prompt.sh"
+    - "{{ home }}/.config/nvim/init.vim"
+    - "{{ home }}/.gitconfig"
+    - "{{ home }}/.briant-profile"
+    - "{{ home }}/.briant-rc"
+    - "{{ home }}/.dotfiles-shell-common.sh"
+    - "{{ home }}/.dotfiles-shell-header.sh"
+    - "{{ home }}/.briant-shell-common.sh"
+    - "{{ home }}/.briant-shell-header.sh"
+    - "{{ home }}/.shell_profile"
+    - "{{ home }}/.shellrc"
+    - "{{ home }}/.bashrc"
+    - "{{ home }}/.bash_profile"
+    - "{{ home }}/.fzf-tmux.sh"
+    - "{{ home }}/.zshrc"
+    - "{{ home }}/.config/tmuxinator/railsapp.yml"

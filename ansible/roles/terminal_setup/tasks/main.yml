@@ -1,0 +1,22 @@
+---
+- name: Run fzf installer
+  import_tasks: fzf.yml
+  tags:
+    - terminal
+
+- name: Install Powerline fonts
+  import_tasks: powerline.yml
+  tags:
+    - terminal
+
+- name: Install tmux plugin manager and plugins
+  import_tasks: tmux_tpm.yml
+  tags:
+    - terminal
+
+- name: Apply macOS iTerm preferences
+  import_tasks: macos_iterm.yml
+  when: ansible_system == "Darwin"
+  tags:
+    - terminal
+    - macos

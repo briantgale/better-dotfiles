@@ -1,0 +1,8 @@
+---
+- name: Run fzf install script non-interactively
+  shell: |
+    if [ -x "${HOME}/.fzf/install" ]; then
+      yes | "${HOME}/.fzf/install"
+    fi
+  changed_when: false
+  failed_when: false

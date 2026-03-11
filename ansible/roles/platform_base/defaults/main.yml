@@ -1,0 +1,42 @@
+---
+brew_packages:
+  - neovim
+  - tmux
+  - git
+  - terminal-notifier
+  - mdp
+  - fzf
+  - the_silver_searcher
+  - cmatrix
+  - tig
+  - zsh
+  - bat
+  - eza
+  - ranger
+  - glances
+  - task
+  - cowsay
+  - fortune
+  - tmuxinator
+  - tldr
+
+debian_packages:
+  - neovim
+  - tmux
+  - git
+  - libnotify-bin
+  - mdp
+  - fzf
+  - silversearcher-ag
+  - cmatrix
+  - tig
+  - zsh
+  - bat
+  - eza
+  - ranger
+  - glances
+  - taskwarrior
+  - cowsay
+  - fortune
+  - tmuxinator
+  - tldr

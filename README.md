@@ -2,98 +2,109 @@
 
 ![Terminals Forever](terminals-forever.jpeg)
 
-This repo contains my dotfiles, as well as a few scripts used to make maintaining them on multiple machines simpler.
+## Setup
 
-## Ansible-based setup (new)
+Prerequisites:
+- macOS: `brew install ansible` and Git
+- Debian/Ubuntu: `sudo apt install ansible` and Git
 
-This repository now includes an Ansible playbook that replaces the old shell scripts for linking dotfiles, installing Homebrew packages, setting up Neovim/tmux/Zsh, Powerline fonts, npm globals, and iTerm2 preferences.
+To install the minimum prerequisites first:
 
-Quick start:
+```sh
+./scripts/bootstrap-ansible.sh
+```
 
-- Prereqs: Ansible installed (brew install ansible) and Git.
-- From the repo root, run:
+Then from the repo root:
 
-  ansible-playbook ansible/site.yml -K
+```sh
+ansible-playbook ansible/site.yml -K
+```
 
-  The -K flag will prompt for your sudo password if needed by Homebrew or system tasks.
+The `-K` flag prompts for your sudo password if needed.
 
-What it does (mirrors old scripts):
-- Symlinks files from configs/ and scripts/ into your home directory
-- Installs/updates Homebrew and packages defined in ansible/site.yml
-- Ensures Neovim config and plugins (vim-plug) are installed
-- Installs/updates Powerline fonts locally
+What the playbook does:
+- Symlinks configs and scripts into your home directory
+- Installs packages via `brew` (macOS) or `apt` (Debian/Ubuntu)
+- Sets up Neovim with vim-plug
+- Installs Powerline fonts
 - Installs tmux plugin manager (TPM) and plugins
-- Installs Oh My Zsh (if you’re already using zsh) and zsh plugins
-- Installs npm global packages listed in ansible/site.yml
-- Copies iTerm2 preferences from configs/ if present and restarts cfprefsd
+- Installs Oh My Zsh and zsh plugins
+- Copies iTerm2 preferences (macOS only)
 
-Options:
-- You can toggle optional components like RVM by editing ansible/site.yml (set install_rvm: true).
+Tags:
+- `ansible-playbook ansible/site.yml -K --tags platform` — packages only
+- `ansible-playbook ansible/site.yml -K --tags dotfiles,shell` — symlinks and shell only
 
-Notes:
-- The old scripts (setup.sh, install-apps.sh) remain for reference but the Ansible playbook is now the preferred and idempotent way to configure a machine.
+## Machine-specific configuration
 
-## RubyMine and IdeaVim configuration
+Two files are excluded from the repo and must be created per machine:
 
-- IdeaVim: This repo includes a synced IdeaVim config at `configs/.ideavimrc`. The Ansible playbook will link it to `~/.ideavimrc` so RubyMine/WebStorm/IntelliJ with IdeaVim will pick it up automatically.
-- RubyMine settings (optional): If you add a folder at `configs/rubymine` with any standard RubyMine setting subfolders (e.g., `keymaps`, `colors`, `options`, `inspection`, etc.), the playbook will detect your latest local RubyMine config directory on macOS and symlink each item from `configs/rubymine/*` into that directory. This lets you share editor color schemes, keymaps, inspections, and more across machines.
+**`~/.rc.local`** — shell overrides (aliases, PATH entries, etc.)
+Copy [`configs/shell/local/.rc.local.example`](configs/shell/local/.rc.local.example) to `~/.rc.local`.
 
-Notes on RubyMine detection on macOS:
-- The playbook searches for the newest directory matching `RubyMine*` under:
-  - `~/Library/Application Support/JetBrains/`
-  - and falls back to `~/Library/Preferences/`
-- If RubyMine isn't installed yet, the task is skipped. You can re-run the playbook after installing RubyMine.
+**`~/.gitconfig.local`** — git user identity
+Copy [`configs/git/.gitconfig.local.example`](configs/git/.gitconfig.local.example) to `~/.gitconfig.local`.
 
-## TMux Config
+## Shell config layout
 
-- Prefix - CTRL+ a
-- Rename Session - <Prefix> + $
-- List Windows - <Prefix> + w
-- New Window - <Prefix> + c
-- Next Window - <Prefix> + n
-- Rename Window - <Prefix> + ,
-- Maximize Window - <Prefix> + z
-- Split Horizontally - <Prefix> + v
-- Split Vertically - <Prefix> + b
-- Navigate Panes - <Prefix> + [h,j,k,l]
-- Show History - <Prefix> + ~
-- Reload Config - <Prefix> + r
-- Show Time - <Prefix> + t
+```
+configs/shell/
+├── common.sh          # shared config for all shells and machines
+├── motd.sh            # welcome message on new sessions
+├── bash/
+│   ├── .bash_profile
+│   └── .bashrc
+├── zsh/
+│   └── .zshrc
+└── local/
+    └── .rc.local.example
+```
 
-## VIM Config
-- , - Leader
-- i - Insert Mode
-- cc - Insert and indent current line
-- o - Open new line below and set to insert mode
-- O - Open new line above and set to insert mode
-- , + o - Open a new below
-- , + O - Open a new line above
-- A - Set to insert mode at the end of the current line
-- I - Set to insert mode at the beginning of the current line
-- gg - Go to top of file
-- G - Go to bottom of file
-- d0 - Delete from cursor to beginning of line
+`common.sh` is symlinked to `~/.dotfiles-common.sh` and sourced by both `.bashrc` and `.zshrc`. Machine-specific overrides go in `~/.rc.local` (not committed).
 
-### Buffers
-- ; = Show buggers
-- , + l = next buffer
-- , + p = prev buffer
+## RubyMine and IdeaVim
+
+The IdeaVim config at `configs/editor/.ideavimrc` is symlinked to `~/.ideavimrc` automatically.
+
+If you add RubyMine settings to `configs/rubymine/` (e.g. `keymaps`, `colors`, `options`), the playbook will detect your RubyMine config directory on macOS and symlink each item into it.
+
+## tmux
+
+- Prefix: `ctrl+a`
+- Rename session: `<prefix> $`
+- List windows: `<prefix> w`
+- New window: `<prefix> c`
+- Next window: `<prefix> n`
+- Rename window: `<prefix> ,`
+- Maximize pane: `<prefix> z`
+- Split horizontal: `<prefix> v`
+- Split vertical: `<prefix> b`
+- Navigate panes: `<prefix> h/j/k/l`
+- Show history: `<prefix> ~`
+- Reload config: `<prefix> r`
+- Show time: `<prefix> t`
+
+## Vim / Neovim
+
+Leader key: `,`
+
+### Navigation
+- `gg` — top of file
+- `G` — bottom of file
+- `ctrl+p` — fuzzy find files
+- `;` — show buffers
+- `,l` — next buffer
+- `,p` — prev buffer
+- `ctrl+n` — NERDTree
 
 ### Panes
-- , + v = Horizontal Split
-- , + b = Vertical Split
-- , + q = Close
-- ctrl + w + | = Maximize
-- ctrl + w + '=' = Equal size
-- ctrl + w + [hjkl] = Navigate 
+- `,v` — horizontal split
+- `,b` — vertical split
+- `,q` — close
+- `ctrl+w |` — maximize
+- `ctrl+w =` — equal size
+- `ctrl+w hjkl` — navigate
 
-### Plugins
-
-#### File Nav
-- ctrl + n = NERD Tree
-- , + m = Buffers
-- ctrl + p = Fuzzyfind
-
-#### Git
-- , + gg = Git messenger
-- , + gb = Git blame
+### Git
+- `,gg` — git messenger
+- `,gb` — git blame

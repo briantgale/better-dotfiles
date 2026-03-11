@@ -1,0 +1,12 @@
+---
+- name: Ensure Neovim config dir exists
+  file:
+    path: "{{ home }}/.config/nvim"
+    state: directory
+
+- name: Link Neovim init.vim
+  file:
+    src: "{{ configs_dir }}/editor/init.vim"
+    dest: "{{ home }}/.config/nvim/init.vim"
+    state: link
+    force: true

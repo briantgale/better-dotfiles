@@ -1,0 +1,19 @@
+---
+- name: Validate platform support
+  import_tasks: validate_platform.yml
+  tags:
+    - platform
+
+- name: Install macOS packages
+  import_tasks: macos_packages.yml
+  when: ansible_system == "Darwin"
+  tags:
+    - platform
+    - macos
+
+- name: Install Debian packages
+  import_tasks: debian_packages.yml
+  when: ansible_os_family == "Debian"
+  tags:
+    - platform
+    - debian
