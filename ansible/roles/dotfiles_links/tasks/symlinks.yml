@@ -20,3 +20,5 @@
     - { src: "{{ configs_dir }}/shell/zsh/.zshrc",          dest: "{{ home }}/.zshrc" }
     - { src: "{{ configs_dir }}/tmux/railsapp.yml",         dest: "{{ home }}/.config/tmuxinator/railsapp.yml" }
     - { src: "{{ configs_dir }}/editor/.ideavimrc",         dest: "{{ home }}/.ideavimrc" }
+    - { src: "{{ configs_dir }}/claude/AGENTS.md",          dest: "{{ home }}/.claude/AGENTS.md" }
+    - { src: "{{ configs_dir }}/claude/CLAUDE.md",          dest: "{{ home }}/.claude/CLAUDE.md" }
