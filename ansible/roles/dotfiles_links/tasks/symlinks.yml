@@ -12,6 +12,8 @@
     - { src: "{{ configs_dir }}/git/.gitconfig",            dest: "{{ home }}/.gitconfig" }
     - { src: "{{ configs_dir }}/shell/common.sh",           dest: "{{ home }}/.dotfiles-common.sh" }
     - { src: "{{ configs_dir }}/shell/motd.sh",             dest: "{{ home }}/.dotfiles-motd.sh" }
+    - { src: "{{ scripts_dir }}/shell/header-card.rb",     dest: "{{ home }}/.dotfiles-header-card.rb" }
+    - { src: "{{ scripts_dir }}/shell/header-art.txt",    dest: "{{ home }}/.dotfiles-header-art.txt" }
     - { src: "{{ configs_dir }}/shell/bash/.bash_profile",  dest: "{{ home }}/.bash_profile" }
     - { src: "{{ configs_dir }}/shell/bash/.bashrc",        dest: "{{ home }}/.bashrc" }
     - { src: "{{ scripts_dir }}/shell/.fzf-tmux.sh",         dest: "{{ home }}/.fzf-tmux.sh" }

@@ -39,4 +39,3 @@ debian_packages:
   - cowsay
   - fortune
   - tmuxinator
-  - tldr

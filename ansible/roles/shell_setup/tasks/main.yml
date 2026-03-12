@@ -1,4 +1,9 @@
 ---
+- name: Suppress last login message
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.hushlogin"
+    state: touch
+
 - name: Install Oh My Zsh
   import_tasks: oh_my_zsh.yml
   tags:

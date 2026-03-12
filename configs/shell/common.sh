@@ -39,7 +39,7 @@ alias python='python3'
 export GPG_TTY="$(tty)"
 
 # MOTD
-[ -f "$HOME/.dotfiles-motd.sh" ] && . "$HOME/.dotfiles-motd.sh"
+[ -f "$HOME/.dotfiles-header-card.rb" ] && ruby "$HOME/.dotfiles-header-card.rb"
 
 # Machine-specific overrides — create ~/.rc.local (not committed) for per-machine config
 [ -f "$HOME/.rc.local" ] && . "$HOME/.rc.local"
