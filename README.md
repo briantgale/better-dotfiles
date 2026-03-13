@@ -2,27 +2,74 @@
 
 ![Terminals Forever](terminals-forever.jpeg)
 
-## Setup
+## Rationale
 
-Prerequisites:
-- macOS: `brew install ansible` and Git
-- Debian/Ubuntu: `sudo apt install ansible` and Git
+These are my *better* dotfiles. Instead of turning my whole home directory into a repo (which sucks), I decided to put something together
+that manages my dotfiles and packages. A few goals that this repo aims to achieve:
 
-To install the minimum prerequisites first:
+1. Easy to set up a new machine (dotfiles, common packages, etc.)
+1. Centralized dotfiles, configs, scripts, etc.
+1. Cross platform (macOS & Linux)
+1. Cross shell (bash, zsh)
+1. Ability to add per-machine shell customizations
 
-```sh
-./scripts/bootstrap-ansible.sh
+## Initial Machine Setup
+
+When you get a new machine, run the following commands to get everything set up:
+
+1. Clone this repo to `~/Projects/`
+1. Run the bootstrap script to get the initial dependencies:
+    
+    ```bash
+    ./scripts/bootstrap.sh
+    ```
+   
+1. Run the Ansible playbook:
+
+    ```bash
+   ansible-playbook ansible/site.yml -K
+    ```
+   *Note*: The `-K` flag prompts for your sudo/admin password.
+   
+1. Restart your shell
+
+## Subsequent Management and Maintenance
+
+Once the dotfiles are set up, do the following to update on each machine:
+
+1. Pull the repo
+
+    ```bash
+    cd ~/Projects/better-dotfiles
+    git pull
+    ```
+   
+1. Run the playbook again:
+
+    ```bash
+    ansible-playbook ansible/site.yml -K
+    ```
+
+## Components
+
+### Ansible Playbooks
+
+Ansible is my management tool of choice. It's cross-platform, does not have any additional dependencies, and already
+knows how to manage packages, symlinks, files, and likely anything I'll need in the future. The playbooks are organized
+as follows:
+
+```
+ansible/
+├── site.yml
+└── roles/
+    ├── dotfiles_links/     # Symlinks configs into home directory
+    ├── editor_setup/       # Neovim + vim-plug + plugins
+    ├── platform_base/      # Package installation (brew / apt)
+    ├── shell_setup/        # Oh My Zsh + zsh plugins
+    └── terminal_setup/     # tmux, fzf, powerline, iTerm2
 ```
 
-Then from the repo root:
-
-```sh
-ansible-playbook ansible/site.yml -K
-```
-
-The `-K` flag prompts for your sudo password if needed.
-
-What the playbook does:
+The complete playbook does the following:
 - Symlinks configs and scripts into your home directory
 - Installs packages via `brew` (macOS) or `apt` (Debian/Ubuntu)
 - Sets up Neovim with vim-plug
@@ -31,80 +78,81 @@ What the playbook does:
 - Installs Oh My Zsh and zsh plugins
 - Copies iTerm2 preferences (macOS only)
 
-Tags:
-- `ansible-playbook ansible/site.yml -K --tags platform` — packages only
-- `ansible-playbook ansible/site.yml -K --tags dotfiles,shell` — symlinks and shell only
+Optionally, there are tags that can target specific parts of the playbook:
+- `platform` — package installation
+- `dotfiles` — symlinks and config files
+- `editor` — Neovim setup
+- `terminal` — tmux, fzf, powerline, iTerm2
+- `shell` — Oh My Zsh and zsh plugins
 
-## Machine-specific configuration
+To use the tags, run the playbook with the `--tags` flag:
 
-Two files are excluded from the repo and must be created per machine:
-
-**`~/.rc.local`** — shell overrides (aliases, PATH entries, etc.)
-Copy [`configs/shell/local/.rc.local.example`](configs/shell/local/.rc.local.example) to `~/.rc.local`.
-
-**`~/.gitconfig.local`** — git user identity
-Copy [`configs/git/.gitconfig.local.example`](configs/git/.gitconfig.local.example) to `~/.gitconfig.local`.
-
-## Shell config layout
-
-```
-configs/shell/
-├── common.sh          # shared config for all shells and machines
-├── motd.sh            # welcome message on new sessions
-├── bash/
-│   ├── .bash_profile
-│   └── .bashrc
-├── zsh/
-│   └── .zshrc
-└── local/
-    └── .rc.local.example
+```bash
+ansible-playbook ansible/site.yml -K --tags platform # packages only
+ansible-playbook ansible/site.yml -K --tags dotfiles,shell # symlinks and shell only
 ```
 
-`common.sh` is symlinked to `~/.dotfiles-common.sh` and sourced by both `.bashrc` and `.zshrc`. Machine-specific overrides go in `~/.rc.local` (not committed).
+### Shell Scripts
 
-## RubyMine and IdeaVim
+Utility scripts are organized as follows:
 
-The IdeaVim config at `configs/editor/.ideavimrc` is symlinked to `~/.ideavimrc` automatically.
+```
+scripts/
+├── bootstrap.sh        # Initial machine setup (installs Ansible, etc.)
+├── git/                # Git prompt and tab completion helpers
+├── macos/              # macOS-specific utilities
+└── shell/              # Shell utilities
+```
 
-If you add RubyMine settings to `configs/rubymine/` (e.g. `keymaps`, `colors`, `options`), the playbook will detect your RubyMine config directory on macOS and symlink each item into it.
+### Dotfiles
 
-## tmux
+I have curated my preferred default set of dotfiles for my shell tools. These files are organized as follows:
 
-- Prefix: `ctrl+a`
-- Rename session: `<prefix> $`
-- List windows: `<prefix> w`
-- New window: `<prefix> c`
-- Next window: `<prefix> n`
-- Rename window: `<prefix> ,`
-- Maximize pane: `<prefix> z`
-- Split horizontal: `<prefix> v`
-- Split vertical: `<prefix> b`
-- Navigate panes: `<prefix> h/j/k/l`
-- Show history: `<prefix> ~`
-- Reload config: `<prefix> r`
-- Show time: `<prefix> t`
+```
+configs/
+├── claude/     # Claude Code configuration and agent instructions
+├── editor/     # Neovim and IdeaVim (RubyMine) configs
+├── git/        # gitconfig (with local override support)
+├── macos/      # macOS-specific configs (iTerm2)
+├── shell/      # Shell configs (zsh, bash, shared aliases/functions)
+└── tmux/       # tmux config and session layouts
+```
 
-## Vim / Neovim
+These files are symlinked to the appropriate home directory location by the playbook.
 
-Leader key: `,`
+The IdeaVim config at `configs/editor/.ideavimrc` is symlinked to `~/.ideavimrc` automatically. If you add RubyMine settings to `configs/rubymine/` (e.g. `keymaps`, `colors`, `options`), the playbook will detect your RubyMine config directory on macOS and symlink each item into it.
 
-### Navigation
-- `gg` — top of file
-- `G` — bottom of file
-- `ctrl+p` — fuzzy find files
-- `;` — show buffers
-- `,l` — next buffer
-- `,p` — prev buffer
-- `ctrl+n` — NERDTree
+### Machine-Specific Dotfiles
 
-### Panes
-- `,v` — horizontal split
-- `,b` — vertical split
-- `,q` — close
-- `ctrl+w |` — maximize
-- `ctrl+w =` — equal size
-- `ctrl+w hjkl` — navigate
+I have configurations that I want to stay on individual machines. For example, I might have work-specific configurations
+that I don't want to commit here. The general dotfiles, referenced above, look for these local files and load them if
+they exist.
 
-### Git
-- `,gg` — git messenger
-- `,gb` — git blame
+#### Bash and Zsh
+
+Copy the example config or create a new one:
+
+```bash
+cp configs/shell/local/.rc.local.example ~/.rc.local
+# OR
+touch ~/.rc.local
+```
+
+Add any machine-specific overrides or configurations to `~/.rc.local`, then restart your shell.
+
+#### Git
+
+Copy the example config or create a new one:
+
+```bash
+cp configs/git/.gitconfig.local.example ~/.gitconfig.local
+# OR
+touch ~/.gitconfig.local
+```
+
+Add any machine-specific overrides or configurations to `~/.gitconfig.local`, then restart your shell.
+
+
+### Keybindings
+
+See [KEYBINDINGS.md](KEYBINDINGS.md) for tmux and Vim/Neovim keybindings.
