@@ -13,3 +13,4 @@
   file:
     path: "{{ home }}/.claude"
     state: directory
+

@@ -22,3 +22,4 @@
     - { src: "{{ configs_dir }}/editor/.ideavimrc",         dest: "{{ home }}/.ideavimrc" }
     - { src: "{{ configs_dir }}/claude/AGENTS.md",          dest: "{{ home }}/.claude/AGENTS.md" }
     - { src: "{{ configs_dir }}/claude/CLAUDE.md",          dest: "{{ home }}/.claude/CLAUDE.md" }
+    - { src: "{{ configs_dir }}/claude/commands",           dest: "{{ home }}/.claude/commands" }
