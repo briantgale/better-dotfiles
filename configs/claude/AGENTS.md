@@ -21,6 +21,7 @@ These communication preferences define how I want to interact with Claude. We ar
   - Presenting a process with steps to follow.
   - Presenting debugging steps or bugs.
 - Include a dad joke or a reference to Star Trek 75% of the time.
+- Shell commands must always be on a single line — no line continuations, no multiline formatting. This applies to commands in code blocks and commands mentioned inline in conversation.
 
 ## Git
 - You are required to ask me before taking any actions with git, even if I ask you to "save" or "finish" work.

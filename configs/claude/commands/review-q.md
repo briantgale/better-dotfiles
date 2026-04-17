@@ -18,14 +18,17 @@ Run in the current working directory:
 git remote get-url origin
 ```
 
-Parse owner/repo, then use `gh` to get all open PRs where `briantgale` is a requested reviewer:
+Parse owner/repo, then use `gh` to get all open PRs where `briantgale` is involved — either as a requested reviewer OR has already submitted a review:
 
 ```bash
-gh pr list --repo kipusystems/healthmatters --json number,title,author,baseRefName,reviewRequests,reviews,url,statusCheckRollup --limit 50 | \
+gh pr list --repo kipusystems/healthmatters --json number,title,author,baseRefName,reviewRequests,reviews,url,statusCheckRollup,headRefName,createdAt --limit 50 | \
   python3 -c "
 import json, sys
 prs = json.load(sys.stdin)
-mine = [p for p in prs if any(r.get('login') == 'briantgale' for r in p.get('reviewRequests', []))]
+mine = [p for p in prs if
+    any(r.get('login') == 'briantgale' for r in p.get('reviewRequests', [])) or
+    any(r.get('author', {}).get('login') == 'briantgale' for r in p.get('reviews', []))
+]
 print(json.dumps(mine, indent=2))
 "
 ```
@@ -35,6 +38,9 @@ This gives you title, author, base branch, my review requests, existing reviews,
 ### Step 2 — Determine my review status per PR
 
 From the `reviews` field in the above output, check if `briantgale` appears as a reviewer with any state (APPROVED, CHANGES_REQUESTED, COMMENTED). This tells you Group 1 vs Group 2 without extra API calls.
+
+- **Group 1** (needs action): briantgale is in `reviewRequests` but has NOT submitted a review yet
+- **Group 2** (participating): briantgale has submitted a review (regardless of whether formally requested)
 
 ### Step 3 — Determine if a PR is "done"
 

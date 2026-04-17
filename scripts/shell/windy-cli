@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+WINDY_DIR="$HOME/Projects/windy-cli"
+ASDF_RUBY_VERSION=$(grep '^ruby ' "$WINDY_DIR/.tool-versions" | awk '{print $2}')
+exec "$HOME/.asdf/shims/ruby" "$WINDY_DIR/exe/windy-cli" "$@"

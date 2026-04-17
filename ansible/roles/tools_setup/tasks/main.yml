@@ -1,0 +1,5 @@
+---
+- name: Clone personal tool repositories
+  import_tasks: clone_repos.yml
+  tags:
+    - tools

@@ -1,0 +1,8 @@
+---
+- name: Clone windy-cli
+  git:
+    repo: git@github.com:briantgale/windy-cli.git
+    dest: "{{ home }}/Projects/windy-cli"
+    update: false
+  tags:
+    - tools

@@ -4,33 +4,43 @@ You are an expert GitHub workflow analyst. Your task is to analyze all my open P
 
 ## Data Collection
 
-### Github
+### Step 1 — Fetch GitHub data via windy-cli
 
-First, determine the repository by running `git remote get-url origin` in the current working directory and parsing the owner/repo from the result. Then use GitHub tools to:
-- List all open PRs authored by me
-- List all open PRs where I'm assigned as the assignee
+Run the following in a shell (from any directory):
 
-Deduplicate across both lists.
+```bash
+windy-cli pr-review --output ~/Desktop/pr-review.json
+```
 
-### Jira
+This produces `~/Desktop/pr-review.json` with pre-fetched, categorized PR data. Read that file — it contains:
+- `needs_action`: PRs with CI failing or changes requested
+- `in_flight`: PRs with no blocking issues
+- `progressing_parked`: PRs whose branch has merged into the complete branch
+- Per PR: `number`, `title`, `url`, `headRefName`, `baseRefName`, `isDraft`, `reviewDecision`, `ci_status`
 
-Look for a Jira link or story number in the description or title of each PR. Use the Atlassian MCP tools to get story metadata from Jira. If no Jira link is found, note "No Jira link" in Jira-related fields.
+### Step 2 — Jira enrichment
+
+Look for a Jira link or story number in the title or description of each PR in `needs_action` and `in_flight`. Use the Atlassian MCP tools to get story metadata. If no Jira link is found, note "No Jira link" in Jira-related fields.
+
+For PRs in `progressing_parked`, Jira lookup is optional — only fetch if the story number is obvious.
 
 ## Analysis
 
-Categorize each PR into one of three groups:
+Using the GitHub data from windy-cli as a starting point, categorize each PR into one of three groups. **Jira status is the authoritative driver for Group 2 vs Group 3.**
 
 ### Group 1: Needs Action
 A PR belongs here if ANY of the following are true — regardless of Jira status:
-- CI is failing
-- There are unresolved comments, conversations, or requested changes
+- `ci_status` is `failing`
+- `reviewDecision` is `CHANGES_REQUESTED`
 - The Jira story status is Needs Revision
 
 ### Group 2: In Flight
 PRs where the Jira story is active (To Do, In Progress, In Dev Review) and no action is currently required from me. These are works in progress or awaiting review from others.
 
+If a PR has no Jira link and is not in Group 1, place it here.
+
 ### Group 3: Progressing / Parked
-PRs where the Jira story has moved past dev (e.g. QA, Staging, Done, Closed) — the code is effectively done and the PR is just open waiting on the pipeline. No action needed unless CI is failing (which would put it in Group 1 instead).
+PRs where the Jira story has moved past dev (e.g. QA, Staging, Done, Closed), OR PRs already in `progressing_parked` from windy-cli with no active Jira status. The code is effectively done and the PR is waiting on the pipeline.
 
 ## Final Report
 

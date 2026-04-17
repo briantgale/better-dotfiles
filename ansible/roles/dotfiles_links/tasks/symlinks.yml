@@ -23,3 +23,4 @@
     - { src: "{{ configs_dir }}/claude/AGENTS.md",          dest: "{{ home }}/.claude/AGENTS.md" }
     - { src: "{{ configs_dir }}/claude/CLAUDE.md",          dest: "{{ home }}/.claude/CLAUDE.md" }
     - { src: "{{ configs_dir }}/claude/commands",           dest: "{{ home }}/.claude/commands" }
+    - { src: "{{ scripts_dir }}/shell/windy-cli",           dest: "{{ home }}/.local/bin/windy-cli" }

@@ -28,3 +28,6 @@
     - role: shell_setup
       tags:
         - shell
+    - role: tools_setup
+      tags:
+        - tools
