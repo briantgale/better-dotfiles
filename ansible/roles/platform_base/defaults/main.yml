@@ -19,6 +19,7 @@ brew_packages:
   - fortune
   - tmuxinator
   - tldr
+  - mise
 
 debian_packages:
   - neovim

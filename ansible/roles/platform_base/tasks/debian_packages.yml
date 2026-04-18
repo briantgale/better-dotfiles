@@ -10,3 +10,24 @@
     name: "{{ debian_packages }}"
     state: present
   become: true
+
+- name: Install mise GPG key
+  shell: |
+    curl -fsSL https://mise.jdx.dev/gpg-key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/mise-archive-keyring.gpg
+  args:
+    creates: /etc/apt/trusted.gpg.d/mise-archive-keyring.gpg
+  become: true
+
+- name: Add mise apt repository
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main"
+    state: present
+    filename: mise
+  become: true
+
+- name: Install mise
+  apt:
+    name: mise
+    state: present
+    update_cache: true
+  become: true

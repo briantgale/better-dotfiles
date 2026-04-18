@@ -9,8 +9,10 @@
 	default = simple
 [init]
 	defaultBranch = main
+
 [user]
-	name = Briant Gale
+  name = Briant Gale
   email = briantgale@gmail.com
+
 [include]
 	path = ~/.gitconfig.local
