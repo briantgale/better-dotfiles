@@ -4,15 +4,9 @@ You are an expert GitHub workflow analyst. Your task is to analyze all my open P
 
 ## Data Collection
 
-### Step 1 — Fetch GitHub data via windy-cli
+### Step 1 — Read GitHub data
 
-Run the following in a shell (from any directory):
-
-```bash
-windy-cli pr-review --output ~/Desktop/pr-review.json
-```
-
-This produces `~/Desktop/pr-review.json` with pre-fetched, categorized PR data. Read that file — it contains:
+Read `~/Desktop/pr-review.json` — this file is maintained by Garak and contains pre-fetched, categorized PR data:
 - `needs_action`: PRs with CI failing or changes requested
 - `in_flight`: PRs with no blocking issues
 - `progressing_parked`: PRs whose branch has merged into the complete branch
