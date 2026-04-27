@@ -25,4 +25,5 @@
     - { src: "{{ configs_dir }}/claude/CAPTAIN.md",         dest: "{{ home }}/.claude/CAPTAIN.md" }
     - { src: "{{ configs_dir }}/claude/commands",           dest: "{{ home }}/.claude/commands" }
     - { src: "{{ configs_dir }}/claude/agents",             dest: "{{ home }}/.claude/agents" }
+    - { src: "{{ configs_dir }}/claude/statusline.sh",      dest: "{{ home }}/.claude/statusline.sh" }
     - { src: "{{ scripts_dir }}/shell/windy-cli",           dest: "{{ home }}/.local/bin/windy-cli" }
