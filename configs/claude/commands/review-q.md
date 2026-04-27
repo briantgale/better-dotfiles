@@ -1,110 +1,83 @@
 # Code Review Queue
 
-You are an expert GitHub workflow analyst. Your task is to analyze open pull requests in a given repository where I'm involved as a reviewer, and summarize what needs my attention.
+You are an expert code review analyst. Your task is to analyze my open pull request review queue and summarize what needs my attention.
 
-## Performance Rules
+## Data Source
 
-- **Prefer `gh` CLI over MCP GitHub tools** — it is significantly faster. Use `gh pr list`, `gh pr view`, `gh api` for all GitHub data.
-- **No Jira calls** — do not use Jira at all. Use GitHub data only.
-- **Batch where possible** — fetch multiple PRs' data in parallel rather than sequentially.
+All PR data comes from `~/Desktop/review-requests.json`, written by `windy-cli review-requests`. Read that file — do not make any `gh` or GitHub API calls.
 
-## Data Collection
+The file has this shape:
 
-### Step 1 — Get the PR list fast
-
-Run in the current working directory:
-
-```bash
-git remote get-url origin
+```json
+{
+  "generated_at": "<ISO8601 timestamp>",
+  "repo": "owner/repo",
+  "pending": [...],
+  "participating": [...],
+  "done": [...],
+  "recently_merged": [...]
+}
 ```
 
-Parse owner/repo, then use `gh` to get all open PRs where `briantgale` is involved — either as a requested reviewer OR has already submitted a review:
+**Open PR fields** (`pending`, `participating`, `done`):
+- `number`, `title`, `url`, `author`
+- `headRefName`, `baseRefName`, `isDraft`
+- `ci_status` — `"passing"`, `"failing"`, `"pending"`, or `"none"`
+- `pr_created_at`, `my_first_review_at`, `my_last_review_at`
+- `needs_attention` — true if I am currently a requested reviewer
 
-```bash
-gh pr list --repo kipusystems/healthmatters --json number,title,author,baseRefName,reviewRequests,reviews,url,statusCheckRollup,headRefName,createdAt --limit 50 | \
-  python3 -c "
-import json, sys
-prs = json.load(sys.stdin)
-mine = [p for p in prs if
-    any(r.get('login') == 'briantgale' for r in p.get('reviewRequests', [])) or
-    any(r.get('author', {}).get('login') == 'briantgale' for r in p.get('reviews', []))
-]
-print(json.dumps(mine, indent=2))
-"
-```
+**Merged PR fields** (`recently_merged`):
+- `number`, `title`, `url`, `author`
+- `headRefName`, `baseRefName`
+- `pr_created_at`, `merged_at`
+- `my_first_review_at`, `my_last_review_at`
 
-This gives you title, author, base branch, my review requests, existing reviews, CI status — all in one call.
+## Grouping
 
-### Step 2 — Determine my review status per PR
+- **Group 1** (needs action): PRs in `pending` — I have not yet submitted a review
+- **Group 2** (participating): PRs in `participating` — I have submitted a review and am still a requested reviewer
+- PRs in `done` are excluded from the report tables
 
-From the `reviews` field in the above output, check if `briantgale` appears as a reviewer with any state (APPROVED, CHANGES_REQUESTED, COMMENTED). This tells you Group 1 vs Group 2 without extra API calls.
+Split Group 1 into two sub-tables:
+- **1a. Core Clinical** — PRs where `baseRefName == "encounters-dev"`
+- **1b. Other PRs** — all other pending PRs
 
-- **Group 1** (needs action): briantgale is in `reviewRequests` but has NOT submitted a review yet
-- **Group 2** (participating): briantgale has submitted a review (regardless of whether formally requested)
+## Report Tables
 
-### Step 3 — Determine if a PR is "done"
+Present tables in order: Group 1a, Group 1b, Group 2.
 
-A Group 1 PR should be excluded if the work is already merged to `encounters-core`. To check this, look for a merged PR in the same repo that:
-- Targets `encounters-core`
-- Has the same head branch name
-
-Do this with:
-
-```bash
-gh pr list --repo OWNER/REPO --base encounters-core --state merged --head BRANCH_NAME --json number,mergedAt
-```
-
-If a match is found, the PR is considered done and should be excluded from Group 1.
-
-## Analysis
-
-### Group 1: Reviews That Need To Be Done
-
-PRs where I am a requested reviewer, have not yet submitted a review, and the branch has NOT been merged to `encounters-core`.
-
-Split into two sub-tables:
-
-**1a. Core Clinical (encounters-dev)** — PRs targeting the `encounters-dev` branch. Tracked against my goal of providing feedback within 1 business day.
-
-**1b. Other PRs** — All other pending reviews.
-
-### Group 2: Reviews I'm Actively Participating In
-
-PRs where I have already submitted a review or left comments but the PR is still open.
-
-## Final Report
-
-Present tables in this order: Group 1a, Group 1b, Group 2.
-
-Columns for each table:
-- PR Number as a link to GitHub
+Columns:
+- PR Number (as a link to `url`)
 - PR Title
 - Author
 - CI Status
-- My Review Status (Pending, Changes Requested, Approved)
-- Summary of any action needed
+- My Review Status (`Pending`, `Changes Requested`, `Approved`)
+- Action needed
 
 ## Review Log
 
-Maintain a persistent log at `~/Desktop/review-log.csv` to track goal progress over time.
+Maintain a persistent log at `~/Desktop/review-log.csv` tracking 1-business-day review goal progress for Core Clinical (`encounters-dev`) PRs.
 
 ### Log Schema
 
 `pr_number, pr_title, author, assigned_date, first_response_date, business_days_to_respond, reviewed, met_goal`
 
-- `assigned_date`: when I was added as a reviewer
-- `first_response_date`: date of my first review submission or comment, or blank if not yet responded
-- `business_days_to_respond`: Mon–Fri days between assigned and first response, or blank
-- `reviewed`: `true` if I submitted any review or comment, otherwise `false`
+- `assigned_date`: use `pr_created_at` as a proxy
+- `first_response_date`: `my_first_review_at`, or blank if not yet reviewed
+- `business_days_to_respond`: Mon–Fri days between `assigned_date` and `first_response_date`, or blank
+- `reviewed`: `true` if `my_first_review_at` is present, otherwise `false`
 - `met_goal`: `true` if `reviewed` is true and `business_days_to_respond` <= 1, otherwise `false`
 
 ### Log Update Process
 
+Source PRs for the log come from:
+- `pending` and `participating` where `baseRefName == "encounters-dev"`
+- `recently_merged` where `baseRefName == "encounters-dev"`
+
 On each run:
-1. Query open and recently closed/merged PRs targeting `encounters-dev` where I was a requested reviewer using `gh pr list --state all --base encounters-dev`
-2. For each PR not already in the log, append a new row
-3. For existing rows where `reviewed` is `false`, check if I've since reviewed — if so, update response fields
-4. Do not modify rows where `reviewed` is already `true`
+1. For each source PR not already in the log, append a new row
+2. For existing rows where `reviewed` is `false`, check if `my_first_review_at` is now present — if so, update response fields
+3. Do not modify rows where `reviewed` is already `true`
 
 ### Goal Summary
 
