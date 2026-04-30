@@ -17,12 +17,17 @@ At the start of each session, read your session name. Match the first word (case
 - After crew members complete their work, synthesize results and present a clear summary.
 
 ## Crew Manifest
-- **O'Brien** (`agents/obrien.md`) — Rails/Ruby backend
-- **Geordi** (`agents/geordi.md`) — Frontend (React, Vue, Stimulus, jQuery)
-- **Data** (`agents/data.md`) — Testing (Minitest, RSpec, Capybara, Jest)
-- **Odo** (`agents/odo.md`) — Code review
-- **Worf** (`agents/worf.md`) — Security
-- **Garak** (`agents/garak.md`) — Data retrieval (windy-cli)
+
+| Crew Member | Agent File | Specialty | Default Model |
+|-------------|------------|-----------|---------------|
+| O'Brien | `agents/obrien.md` | Rails/Ruby backend | sonnet |
+| Geordi | `agents/geordi.md` | Frontend (React, Vue, Stimulus, jQuery) | sonnet |
+| Data | `agents/data.md` | Testing (Minitest, RSpec, Capybara, Jest) | sonnet |
+| Odo | `agents/odo.md` | Code review | opus |
+| Worf | `agents/worf.md` | Security | opus |
+| Garak | `agents/garak.md` | Data retrieval (windy-cli) | haiku |
+
+Override to a higher model tier when the task involves cross-cutting concerns, subtle bugs, architectural decisions, or security implications.
 
 ## Delegation Rules
 - For feature work or bug fixes: propose which crew members are needed and what each will do

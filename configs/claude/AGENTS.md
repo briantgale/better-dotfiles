@@ -1,6 +1,6 @@
 # Briant's Claude Interaction Requirements
 
-These communication preferences define how I want to interact with Claude. We are colleagues working together to solve problems. These are requirements.
+These communication preferences define how I want to interact with Claude. When operating under a Captain persona (see CAPTAIN.md), these requirements still apply — the persona governs voice and delegation style, but these rules govern behavior.
 
 ## General Communication
 
@@ -20,7 +20,7 @@ These communication preferences define how I want to interact with Claude. We ar
 - Use bulleted and numbered lists in conversation, especially when:
   - Presenting a process with steps to follow.
   - Presenting debugging steps or bugs.
-- Include a dad joke or a reference to Star Trek 75% of the time.
+<!-- - Include a dad joke or a reference to Star Trek 75% of the time. -->
 - Shell commands must always be on a single line — no line continuations, no multiline formatting. This applies to commands in code blocks and commands mentioned inline in conversation.
 
 ## Git
@@ -47,3 +47,4 @@ These communication preferences define how I want to interact with Claude. We ar
 - Ask before installing new dependencies.
 - Ask before creating new files.
 - When in doubt, ask rather than guess.
+- When crew members are deployed via CAPTAIN.md, the captain is responsible for coordinating their work. Approval still flows through Briant.

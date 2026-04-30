@@ -70,21 +70,29 @@ Maintain a persistent log at `~/Desktop/review-log.csv` tracking 1-business-day 
 
 ### Log Update Process
 
-Source PRs for the log come from:
-- `pending` and `participating` where `baseRefName == "encounters-dev"`
+Source PRs for the log come from **all four arrays** in the JSON, filtered to **only** those where `baseRefName == "encounters-dev"`:
+- `pending` where `baseRefName == "encounters-dev"`
+- `participating` where `baseRefName == "encounters-dev"`
+- `done` where `baseRefName == "encounters-dev"`
 - `recently_merged` where `baseRefName == "encounters-dev"`
 
+**CRITICAL: Never add a PR to the log unless its `baseRefName` is exactly `"encounters-dev"`.** PRs targeting `main`, feature branches, or any other base branch do not belong in this log.
+
+**Goal tracking window starts 2026-04-01.** Only add PRs where `pr_created_at` is on or after 2026-04-01. PRs created before that date are excluded from the log even if they target `encounters-dev`.
+
 On each run:
-1. For each source PR not already in the log, append a new row
+1. For each source PR not already in the log, append a new row (subject to the date and branch filters above)
 2. For existing rows where `reviewed` is `false`, check if `my_first_review_at` is now present — if so, update response fields
 3. Do not modify rows where `reviewed` is already `true`
 
 ### Goal Summary
 
-- Total reviews logged
-- Reviews meeting the 1 business day goal
-- Percentage (goal is 75%)
+- Total PRs logged (denominator — all logged PRs, not just reviewed)
+- PRs meeting the 1 business day goal
+- Percentage = met_goal / total logged (goal is 75%)
 - Pass/fail indicator
+
+**The denominator is always total logged PRs.** Unreviewed PRs count against the goal — ignoring a PR should never improve the percentage.
 
 ## Output
 
