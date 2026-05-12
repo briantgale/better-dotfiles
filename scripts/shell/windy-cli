@@ -1,17 +1,7 @@
 #!/usr/bin/env bash
 WINDY_DIR="$HOME/Projects/windy-cli"
 
-if command -v mise &>/dev/null; then
-  RUBY_BIN=$(mise which ruby 2>/dev/null)
-elif command -v asdf &>/dev/null; then
-  RUBY_BIN=$(asdf which ruby 2>/dev/null)
-else
-  RUBY_BIN=$(command -v ruby)
-fi
-
-if [[ -z "$RUBY_BIN" ]]; then
-  echo "windy-cli: could not find a ruby binary (tried mise, asdf, system)" >&2
-  exit 1
-fi
-
-exec "$RUBY_BIN" "$WINDY_DIR/exe/windy-cli" "$@"
+export WINDY_CALLER_DIR="$PWD"
+cd "$WINDY_DIR" || { echo "windy-cli: $WINDY_DIR not found" >&2; exit 1; }
+unset BUNDLE_GEMFILE BUNDLE_PATH BUNDLE_BIN BUNDLE_APP_CONFIG
+exec bundle exec ruby exe/windy-cli "$@"

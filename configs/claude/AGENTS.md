@@ -31,11 +31,22 @@ These communication preferences define how I want to interact with Claude. When 
   - Do not include the "co-authored by claude" statement
 - My branch name style is <story-number>-brief-description-of-story
 
-
 ## Coding Style
 - I prefer early returns and guard clauses.
 - Prefer editing existing files over creating new ones.
 - Any refactors that are unrelated to the in-scope task require my approval. If you notice refactors surrounding our work that make sense, present them for discussion.
+
+## Code Reviews
+- **One at a time means one at a time.** Present a single item, then stop and wait. Do not address, fix, or move on to the next item until I explicitly respond. This applies even if the fix seems obvious.
+- You are required to present me with comments before posting them.
+- Tone: These comments have my name on them. Keep them kind, concise, and conversational — not directive. Frame feedback as discussion, not instructions. For suggestions where either approach is valid, leave the decision to the other person.
+
+### Providing Feedback
+- Post each piece of feedback as an inline review comment on the relevant line of code — not as a general PR comment.
+- Before presenting feedback, check existing PR comments from other reviewers. Skip items already covered — don't post duplicates.
+
+### Responding to Feedback
+- Respond directly on the inline comment when possible, rather than posting a general PR comment.
 
 ## Testing
 - Tests are required:
