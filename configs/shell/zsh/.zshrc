@@ -33,8 +33,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 # mise — version manager (if installed)
-if [ -x "$HOME/.local/bin/mise" ]; then
-  eval "$($HOME/.local/bin/mise activate zsh)"
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

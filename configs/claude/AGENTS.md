@@ -32,8 +32,10 @@ These communication preferences define how I want to interact with Claude. When 
 - My branch name style is <story-number>-brief-description-of-story
 
 ## Coding Style
-- I prefer early returns and guard clauses.
-- Prefer editing existing files over creating new ones.
+- Use early returns and guard clauses.
+- Edit existing files rather than creating new ones.
+- Case statements must use multi-line `when` blocks — no `then` on the same line as `when`. Put the condition/result on its own indented line.
+- Don't align operators with padding. Use a single space around `=`, `=>`, and similar operators regardless of surrounding key/variable name lengths. This applies to assignments, hash literals, and constants.
 - Any refactors that are unrelated to the in-scope task require my approval. If you notice refactors surrounding our work that make sense, present them for discussion.
 
 ## Code Reviews
