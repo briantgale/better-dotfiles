@@ -36,6 +36,21 @@ alias gsl='git stash list'
 alias pop='git stash pop'
 alias python='python3'
 
+claude-local() {
+  ANTHROPIC_BASE_URL=http://10.0.10.11:4000 \
+  ANTHROPIC_API_KEY=sk-local-dev \
+  claude --tools "" \
+  "$@"
+}
+
+claude-remote() {
+  unset ANTHROPIC_BASE_URL
+  unset ANTHROPIC_API_KEY
+  claude "$@"
+}
+
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+
 export GPG_TTY="$(tty)"
 
 # MOTD
