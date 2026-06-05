@@ -37,10 +37,11 @@ alias pop='git stash pop'
 alias python='python3'
 
 claude-local() {
-  ANTHROPIC_BASE_URL=http://10.0.10.11:4000 \
-  ANTHROPIC_API_KEY=sk-local-dev \
-  claude --tools "" \
-  "$@"
+  ANTHROPIC_BASE_URL='https://litellm.ncc5677.com' \
+  ANTHROPIC_API_KEY='sk-local-dev' \
+  CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
+  API_TIMEOUT_MS=3000000 \
+  claude "$@"
 }
 
 claude-remote() {
