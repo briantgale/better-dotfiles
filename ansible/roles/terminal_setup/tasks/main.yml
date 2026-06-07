@@ -4,11 +4,6 @@
   tags:
     - terminal
 
-- name: Install Powerline fonts
-  import_tasks: powerline.yml
-  tags:
-    - terminal
-
 - name: Install tmux plugin manager and plugins
   import_tasks: tmux_tpm.yml
   tags:

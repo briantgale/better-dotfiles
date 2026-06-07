@@ -1,5 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="amuse"
+ZSH_THEME="spaceship"
 DEFAULT_USER="$(whoami)"
 
 # Base plugins — available on all machines
@@ -21,6 +21,12 @@ fi
 if command -v bundle >/dev/null 2>&1 || command -v ruby >/dev/null 2>&1; then
   plugins+=(rails ruby bundler)
 fi
+
+# Custom prompt with hostname
+# PROMPT='%F{green}%n%f%F{242}@%f%F{cyan}%m%f%F{242}:%f%F{yellow}%~%f
+# %F{magenta}$(git_prompt_info)%F{cyan}❯%f '
+
+# RPROMPT='%F{242}%T%f'
 
 source "$ZSH/oh-my-zsh.sh"
 

@@ -8,8 +8,6 @@
     home: "{{ lookup('env','HOME') }}"
     configs_dir: "{{ repo_root }}/configs"
     scripts_dir: "{{ repo_root }}/scripts"
-    # Use a dedicated clone dir for Powerline fonts to avoid conflicts with repo's own fonts directory
-    powerline_fonts_dir: "{{ repo_root }}/.powerline-fonts"
     # RubyMine config in repo (optional)
     rubymine_repo_dir: "{{ configs_dir }}/rubymine"
   roles:

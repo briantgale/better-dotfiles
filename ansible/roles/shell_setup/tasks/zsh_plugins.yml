@@ -1,4 +1,15 @@
 ---
+- name: Link Spaceship theme into Oh My Zsh custom themes
+  shell: |
+    ZSH_CUSTOM_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+    mkdir -p "$ZSH_CUSTOM_DIR/themes"
+    SPACESHIP_ZSH="$(brew --prefix)/opt/spaceship/spaceship.zsh"
+    if [ -f "$SPACESHIP_ZSH" ]; then
+      ln -sf "$SPACESHIP_ZSH" "$ZSH_CUSTOM_DIR/themes/spaceship.zsh-theme"
+    fi
+  changed_when: false
+  failed_when: false
+
 - name: Install zsh plugins (syntax highlighting and autosuggestions)
   shell: |
     ZSH_CUSTOM_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"

@@ -20,6 +20,14 @@ brew_packages:
   - tmuxinator
   - tldr
   - mise
+  - spaceship
+
+brew_casks:
+  - font-hack-nerd-font
+  - font-jetbrains-mono-nerd-font
+  - font-fira-code-nerd-font
+  - font-meslo-lg-nerd-font
+  - font-sauce-code-pro-nerd-font
 
 debian_packages:
   - neovim

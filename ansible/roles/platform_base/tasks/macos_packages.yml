@@ -15,3 +15,11 @@
     fi
   loop: "{{ brew_packages }}"
   changed_when: false
+
+- name: Install Homebrew casks
+  shell: |
+    if ! brew list --cask {{ item }} >/dev/null 2>&1; then
+      brew install --cask {{ item }}
+    fi
+  loop: "{{ brew_casks }}"
+  changed_when: false

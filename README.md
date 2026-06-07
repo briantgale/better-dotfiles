@@ -66,14 +66,14 @@ ansible/
     ├── editor_setup/       # Neovim + vim-plug + plugins
     ├── platform_base/      # Package installation (brew / apt)
     ├── shell_setup/        # Oh My Zsh + zsh plugins
-    └── terminal_setup/     # tmux, fzf, powerline, iTerm2
+    └── terminal_setup/     # tmux, fzf, iTerm2
 ```
 
 The complete playbook does the following:
 - Symlinks configs and scripts into your home directory
 - Installs packages via `brew` (macOS) or `apt` (Debian/Ubuntu)
+- Installs Nerd Fonts via Homebrew casks (macOS)
 - Sets up Neovim with vim-plug
-- Installs Powerline fonts
 - Installs tmux plugin manager (TPM) and plugins
 - Installs Oh My Zsh and zsh plugins
 - Copies iTerm2 preferences (macOS only)
@@ -82,7 +82,7 @@ Optionally, there are tags that can target specific parts of the playbook:
 - `platform` — package installation
 - `dotfiles` — symlinks and config files
 - `editor` — Neovim setup
-- `terminal` — tmux, fzf, powerline, iTerm2
+- `terminal` — tmux, fzf, iTerm2
 - `shell` — Oh My Zsh and zsh plugins
 
 To use the tags, run the playbook with the `--tags` flag:
