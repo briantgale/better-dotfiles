@@ -3,7 +3,7 @@ export EDITOR="$VISUAL"
 
 # FZF config — prefer fast search tools, fall back gracefully
 if command -v ag >/dev/null 2>&1; then
-  export FZF_DEFAULT_COMMAND='ag --ignore --hidden --ignore-dir vendor -g ""'
+  export FZF_DEFAULT_COMMAND='ag --hidden --ignore-dir vendor -g ""'
 elif command -v fd >/dev/null 2>&1; then
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude vendor'
 fi
